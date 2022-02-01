@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import InputFirst from './components/input-component';
+import InputHooks from './components/input-component_hooks';
+import Login from './components/login_component';
+import LoginClass from './components/login_component_class';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <div>
+         <InputFirst name="input_first" />
+         <InputFirst name="input_second" />
+         <br/>
+         <br/>
+         <InputHooks name="input_first_hooks"/>
+         <Login />
+         <LoginClass />
+      </div>
+   );
 }
 
 export default App;
