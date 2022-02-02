@@ -4,6 +4,8 @@ import './App.css';
 
 import LoginClass from './components/js/login_component_class.js';
 import LoginHooks from './components/js/login_component_hooks.js';
+import SignupClass from './components/js/signup_component_class';
+import SignupHooks from './components/js/signup_component_hooks';
 
 function App() {
    return (
@@ -17,6 +19,8 @@ function App() {
 
          <LoginHooks />
          <LoginClass />
+         <SignupClass />
+         <SignupHooks />
       </div>
    );
 }
