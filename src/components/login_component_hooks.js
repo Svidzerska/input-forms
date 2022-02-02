@@ -9,7 +9,9 @@ function LoginHooks(props) {
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
-      setValues(values => ({...values, [name]:value})); //why are parentheses () using?
+      console.log(name, value);
+      // setValues(values => ({...values, [name]:value})); //why are parentheses () using?
+      setValues({...values,[name]:value});
    }
 
    const handleSubmit = (event) => {

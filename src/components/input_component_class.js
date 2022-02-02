@@ -6,11 +6,15 @@ class InputClass extends React.Component {
       super(props);
       this.state = {value: ''};
 
-      this.handleChange = this.handleChange.bind(this);
+      // this.handleChange = this.handleChange.bind(this);
    }
    
-   handleChange(event) {
-      this.props.onChange(event);
+
+   handleChange = (event) => {
+      this.setState({value:event.target.value});
+      if (this.props.onChange) {
+         this.props.onChange(event);
+      }
    }
   
    render() {

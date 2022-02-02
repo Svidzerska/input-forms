@@ -8,13 +8,13 @@ import LoginHooks from './components/login_component_hooks';
 function App() {
    return (
       <div>
-         <InputClass name="input_first" onChange={e => this.setState({value: e.target.value})}/>
+         <InputClass name="input_first" onChange={()=>{}}/>
          <br/>
          <InputClass name="input_second" />
          <br/>
          <br/>
          <InputHooks name="input_first_hooks"/>
-         
+
          <LoginHooks />
          <LoginClass />
       </div>

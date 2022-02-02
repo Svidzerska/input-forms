@@ -5,13 +5,28 @@ import './input_component_hooks.css';
 
 function InputHooks(props) {
    const [value, setValue] = useState("");
+   const {
+      type = "text",
+      placeholder,
+      onChange = () => {},
+      className, 
+      name
+   } = props;
 
    function onChangeHandler(e) {
+      onChange(e);
       setValue(e.target.value);
       console.log(value);
    }
 
-   return <input type={props.type} placeholder={props.placeholder} className={props.className} value={value} onChange={onChangeHandler} name={props.name}/>
+   return (
+            <input type={type}
+            placeholder={placeholder}
+            className={className}
+            value={value}
+            onChange={onChangeHandler}
+            name={name}/>
+   )
 }
 
 export default InputHooks;
