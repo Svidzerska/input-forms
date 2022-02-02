@@ -1,6 +1,6 @@
 import React from "react";
 import InputClass from "./input_component_class";
-import './login_component_class.css';
+import '../css/login_component_class.css';
 
 class LoginClass extends React.Component {
    constructor(props) {
@@ -13,7 +13,6 @@ class LoginClass extends React.Component {
    }
 
    handleChange(event) {
-      console.log(event);
       this.setState({[event.target.name]: event.target.value});
    }
 
@@ -23,14 +22,16 @@ class LoginClass extends React.Component {
    }
   
    render() {
-     return <form onSubmit={this.onSubmit}> 
-         <InputClass className="login_class" type="text" onChange={this.handleChange} name="login"/>
-        <br/>
-        <InputClass className="login_class" type="password" onChange={this.handleChange} name="password"/>
-        <br/>
-        <button type="submit" className="login_press">Login</button>
-     </form>;
-      
+      return (
+         <form onSubmit={this.onSubmit}>
+            <InputClass className="login_class" type="text" onChange={this.handleChange} name="login" />
+            <br />
+            <InputClass className="login_class" type="password" onChange={this.handleChange} name="password" />
+            <br />
+            <button type="submit" className="login_press">Login</button>
+         </form>
+      );
+
    }
 }
 

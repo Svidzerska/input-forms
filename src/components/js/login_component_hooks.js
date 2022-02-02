@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './login_component_hooks.css';
+import '../css/login_component_hooks.css';
 import InputHooks from "./input_component_hooks";
 
 
@@ -9,8 +9,6 @@ function LoginHooks(props) {
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
-      console.log(name, value);
-      // setValues(values => ({...values, [name]:value})); //why are parentheses () using?
       setValues({...values,[name]:value});
    }
 
