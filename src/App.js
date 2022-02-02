@@ -1,18 +1,20 @@
 import './App.css';
-import InputFirst from './components/input-component';
-import InputHooks from './components/input-component_hooks';
-import Login from './components/login_component';
+import InputClass from './components/input_component_class';
+import InputHooks from './components/input_component_hooks';
+
 import LoginClass from './components/login_component_class';
+import LoginHooks from './components/login_component_hooks';
 
 function App() {
    return (
       <div>
-         <InputFirst name="input_first" />
-         <InputFirst name="input_second" />
+         <InputClass name="input_first" />
+         <br/>
+         <InputClass name="input_second" />
          <br/>
          <br/>
          <InputHooks name="input_first_hooks"/>
-         <Login />
+         <LoginHooks />
          <LoginClass />
       </div>
    );

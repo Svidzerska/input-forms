@@ -1,0 +1,12 @@
+.login_press {
+   width: 200px;
+   height: 30px;
+   border: 2px solid green;
+   border-radius: 25px;
+   cursor: pointer;
+   margin: 10px;
+}
+
+.login_class {
+   border: 1px solid rgb(135, 255, 135);
+}

@@ -1,6 +1,7 @@
 import React from "react";
+import './input_component_class.css';
 
-class InputFirst extends React.Component {
+class InputClass extends React.Component {
    constructor(props) {
       super(props);
       this.state = {value: ''};
@@ -17,5 +18,5 @@ class InputFirst extends React.Component {
    }
 }
 
-export default InputFirst;
+export default InputClass;
 

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
+import './login_component_hooks.css';
 
-function Login(props) {
+
+function LoginHooks(props) {
    const [values, setValues] = useState({});
 
    const handleChanges = (event) => {
@@ -25,5 +27,5 @@ function Login(props) {
    )
 }
 
-export default Login;
+export default LoginHooks;
 

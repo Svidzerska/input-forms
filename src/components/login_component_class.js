@@ -1,4 +1,5 @@
 import React from "react";
+import './login_component_class.css';
 
 class LoginClass extends React.Component {
    constructor(props) {
