@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './login_component_hooks.css';
+import InputHooks from "./input_component_hooks";
 
 
 function LoginHooks(props) {
@@ -18,9 +19,9 @@ function LoginHooks(props) {
 
    return (
       <form onSubmit={handleSubmit}>
-         <input type="text"  value={values.login || ""} onChange={handleChanges} name="login"/>
+         <InputHooks type="text" className="login_hooks" onChange={handleChanges} name="login"/>
          <br/>
-         <input type="password"  value={values.password || ""} onChange={handleChanges} name="password"/>
+         <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="password"/>
          <br/>
          <input type="submit"/>
       </form>

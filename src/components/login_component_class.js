@@ -1,4 +1,5 @@
 import React from "react";
+import InputClass from "./input_component_class";
 import './login_component_class.css';
 
 class LoginClass extends React.Component {
@@ -22,9 +23,9 @@ class LoginClass extends React.Component {
   
    render() {
      return <form onSubmit={this.onSubmit}> 
-        <input className="login_class" type="text" value={this.state.login} onChange={this.handleChange} name="login"/>
+         <InputClass className="login_class" type="text" onChange={this.handleChange} name="login"/>
         <br/>
-        <input className="login_class" type="password" value={this.state.password} onChange={this.handleChange} name="password"/>
+        <InputClass className="login_class" type="password" onChange={this.handleChange} name="password"/>
         <br/>
         <button type="submit" className="login_press">Login</button>
      </form>;
