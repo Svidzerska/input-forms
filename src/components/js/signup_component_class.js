@@ -37,13 +37,32 @@ class SignupClass extends React.Component {
    render() {
       return (
          <form onSubmit={this.onSubmit}>
-            <InputClass className="login_class" type="text" onChange={this.handleChange} name="name" />
+            <InputClass
+               className="login_class"
+               type="text"
+               value={this.state.name}
+               onChange={this.handleChange}
+               name="name" />
             <br />
-            <InputClass className="login_class" type="email" onChange={this.handleChange} name="email" />
+            <InputClass
+               className="login_class"
+               type="email" value={this.state.email}
+               onChange={this.handleChange}
+               name="email" />
             <br />
-            <InputClass className="login_class" type="password" onChange={this.handleChange} name="password" />
+            <InputClass 
+               className="login_class"
+               type="password"
+               value={this.state.password}
+               onChange={this.handleChange}
+               name="password" />
             <br />
-            <InputClass className="login_class" type="password" onChange={this.handleChange} name="confirm_password" />
+            <InputClass 
+               className="login_class"
+               type="password"
+               value={this.state.confirm_password}
+               onChange={this.handleChange}
+               name="confirm_password" />
             <br />
             <button type="submit" className="login_press">Login</button>
          </form>

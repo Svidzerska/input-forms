@@ -4,7 +4,7 @@ import '../css/input_component_class.css';
 class InputClass extends React.Component {
    constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {_value: ''};
    }
    
    handleChange = (event) => {
@@ -20,15 +20,16 @@ class InputClass extends React.Component {
          className,
          placeholder,
          name,
-         type
+         type, 
+         value
       } = this.props;
       
       return (
          <input type={type}
             className={className}
             placeholder={placeholder}
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={typeof value !== "undefined" ? value : this.state._value}
+            onChange={this.handleChange} 
             name={name} />
       );
    }

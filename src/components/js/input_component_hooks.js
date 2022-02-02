@@ -4,13 +4,14 @@ import '../css/input_component_hooks.css';
 
 
 function InputHooks(props) {
-   const [value, setValue] = useState("");
+   const [_value, setValue] = useState("");
    const {
       type = "text",
       placeholder,
       onChange = () => {},
       className, 
-      name
+      name,
+      value
    } = props;
 
    function onChangeHandler(e) {
@@ -22,7 +23,7 @@ function InputHooks(props) {
       <input type={type}
          placeholder={placeholder}
          className={className}
-         value={value}
+         value={typeof value !== "undefined" ? value : _value}
          onChange={onChangeHandler}
          name={name} />
    )

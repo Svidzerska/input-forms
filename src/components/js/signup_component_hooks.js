@@ -33,13 +33,13 @@ function SignupHooks(props) {
 
    return (
       <form onSubmit={handleSubmit}>
-         <InputHooks type="text" className="login_hooks" onChange={handleChanges} name="name"/>
+         <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name"/>
          <br/>
-         <InputHooks type="email" className="login_hooks" onChange={handleChanges} name="email"/>
+         <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email"/>
          <br/>
-         <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="password"/>
+         <InputHooks type="password" className="login_hooks" value={values.password} onChange={handleChanges} name="password"/>
          <br/>
-         <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="confirm_password"/>
+         <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password"/>
          <br/>
          <input type="submit"/>
       </form>
