@@ -13,8 +13,9 @@ function SignupHooks(props) {
    };
 
    const [values, setValues] = useState(initialState);
-   const [formErrors, setErrors] = useState({});
-   const [isSubmit, setIsSubmit] = useState(false);
+   const [isCorrectName, setCorrectName] = useState(false);
+   const [isCorrectEmail, setCorrectEmail] = useState(false);
+   const [isCorrectPass, setCorrectPass] = useState(false);
 
 
    const handleChanges = (event) => {
@@ -27,48 +28,47 @@ function SignupHooks(props) {
       setValues(initialState);
    }
 
+   const correctData = (bool) => {
+      setCorrectName(bool);
+   }
+
    const handleSubmit = (event) => {
       event.preventDefault();
       // console.log(values);
       resetForm();
-      setErrors(validate(values));
-      setIsSubmit(true);
+      // validate(values);
+      if (validation.minLength(values.name).valid) {
+         console.log(validation.minLength(values.name).name);
+         correctData(true);
+         informationToUser(validation.minLength(values.name).name);
+      } else {
+         console.log(validation.minLength(values.name).error);
+         correctData(false);
+         informationToUser(validation.minLength(values.name).error);
+      }
+   } 
+   
+   let warning;
+
+   const informationToUser = (data) => {
+      warning = <span>{data}</span>;
+      console.log(warning);
    } 
 
+   console.log(warning);
+
+   // const renderWarning = (result, isCorrectName) => {
+   //       console.log(999999999999);
+   //       console.log(isCorrectName);
+   //       if (isCorrectName) {
+   //          warning = <span value="22222222"/>
+   //       }
+   //    }
    
-   const validate = (values) => {
-      const errors = {};
-      const regex = /\d+/; 
-      if (!values.name) {
-         errors.name = 'name is required!';
-      }
-      if (!values.email) {
-         errors.email = 'e-mail is required!';
-      }
-      if (!values.password) {
-         errors.password = 'password is required!';
-      }
-      if (!values.confirm_password) {
-         errors.confirm_password = 'password should be confirmed!';
-      }
-
-      validation(values.name, 'name');
-      
-      if (Object.keys(errors).length === 0) {
-         console.log(values);
-         return values;
-      } else {
-         console.log(errors);
-         return errors;
-      }
-
-      
-   }
-
-
    
    return (
       <form onSubmit={handleSubmit}>
+         {warning}
          <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name"/>
          <br/>
          <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email"/>

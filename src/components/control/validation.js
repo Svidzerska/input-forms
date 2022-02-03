@@ -1,48 +1,46 @@
-function validation(values, name_val) {
-   const result = {};
-   console.log(result);
-
-   const minLength = (val, name_val) => {
-      const regex = /[0-9a-zA-Z]{4}/;
+const validation = {
+   minLength: (val) => {
+      const regex = /^\S{4,15}$/;
       if (regex.test(val)) {
-         return (result.valid = true,
-            result.name = name_val,
-            result.error = 'no'
-         )
+         return ({valid : true,
+            name : "name",
+            error : 'no'
+         })
       } else {
-         return (result.valid = false,
-            result.name = name_val,
-            result.error = 'at least 4 symbols are needed'
-         )
+         return ({valid : false,
+            name : "name",
+            error : 'from 4 to 15 symbols are needed'
+         })
       }
-   }
+   },
 
-   minLength(values, name_val);
-
-   const maxLength = (val) => {
-      const regex = /[0-9a-zA-Z]{5,15}/;
-      if (regex.test(val)) {
-         return result.valid = true;
-      } else {
-         return result.valid = false;
-      }
-   }
-
-   const isEmail = (val) => {
+   isEmail: (val) => {
       const regex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
       if (regex.test(val)) {
-         return result.valid = true;
+         return ({valid : true,
+            name : "email",
+            error : 'no'
+         })
       } else {
-         return result.valid = false;
+         return ({valid : false,
+            name : "email",
+            error : 'it is not a email'
+         })
       }
-   }
+   },
 
-   const pass = (val) => {
-      const regex = /\d+\w+/;
+   pass: (val) => {
+      const regex = /(\d+\w+) | (\w+\d+)/;
       if (regex.test(val)) {
-         return result.valid = true;
+         return ({valid : true,
+            name : "pass",
+            error : 'no'
+         })
       } else {
-         return result.valid = false;
+         return ({valid : false,
+            name : "pass",
+            error : 'at least 1 digit and 1 letter are expected'
+         })
       }
    }
 }
