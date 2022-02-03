@@ -24,7 +24,7 @@ const validation = {
       } else {
          return ({valid : false,
             name : "email",
-            error : 'it is not a email'
+            error : 'it is not an email'
          })
       }
    },

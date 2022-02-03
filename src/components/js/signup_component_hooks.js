@@ -40,7 +40,12 @@ function SignupHooks(props) {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
+      // validChanges(values);
    }
+
+   // const validChanges = (values) => {
+   //    setValidation(validate(values));
+   // }
 
    const resetForm = () => {
       setValues(initialState);
