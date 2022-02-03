@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import '../css/login_component_hooks.css';
 import InputHooks from "./input_component_hooks";
 import validation from "../control/validation";
+import '../css/signup_component_hooks.css';
 
 
 function SignupHooks(props) {
@@ -11,11 +12,28 @@ function SignupHooks(props) {
       password: '',
       confirm_password: ''
    };
+   
+   const initValidation = {
+      name: {
+         valid: true,
+         error: ""
+      },
+      email: {
+         valid: true,
+         error: ""
+      },
+      password: {
+         valid: true,
+         error: ""
+      },
+      confirm_password: {
+         valid: true,
+         error: ""
+      }
+   }
 
    const [values, setValues] = useState(initialState);
-   const [isCorrectName, setCorrectName] = useState(false);
-   const [isCorrectEmail, setCorrectEmail] = useState(false);
-   const [isCorrectPass, setCorrectPass] = useState(false);
+   const [validations, setValidation] = useState(initValidation);
 
 
    const handleChanges = (event) => {
@@ -28,56 +46,54 @@ function SignupHooks(props) {
       setValues(initialState);
    }
 
-   const correctData = (bool) => {
-      setCorrectName(bool);
-   }
-
+   
    const handleSubmit = (event) => {
       event.preventDefault();
-      // console.log(values);
       resetForm();
-      // validate(values);
-      if (validation.minLength(values.name).valid) {
-         console.log(validation.minLength(values.name).name);
-         correctData(true);
-         informationToUser(validation.minLength(values.name).name);
-      } else {
-         console.log(validation.minLength(values.name).error);
-         correctData(false);
-         informationToUser(validation.minLength(values.name).error);
+
+      // validate(values); //is this call needed? I think no.
+
+      setValidation(validate(values));
+   }
+
+
+
+   const validate = (values) => {
+      return {
+         [validation.minLength(values.name).name]:validation.minLength(values.name),
+         [validation.isEmail(values.email).name]:validation.isEmail(values.email),
+         [validation.pass(values.password).name]:validation.pass(values.password),
+         [validation.confirmPass(values.confirm_password,values.password).name]:validation.confirmPass(values.confirm_password,values.password)
       }
-   } 
-   
-   let warning;
+   }
 
-   const informationToUser = (data) => {
-      warning = <span>{data}</span>;
-      console.log(warning);
-   } 
-
-   console.log(warning);
-
-   // const renderWarning = (result, isCorrectName) => {
-   //       console.log(999999999999);
-   //       console.log(isCorrectName);
-   //       if (isCorrectName) {
-   //          warning = <span value="22222222"/>
-   //       }
-   //    }
-   
-   
    return (
       <form onSubmit={handleSubmit}>
-         {warning}
-         <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name"/>
-         <br/>
-         <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email"/>
-         <br/>
-         <InputHooks type="password" className="login_hooks" value={values.password} onChange={handleChanges} name="password"/>
-         <br/>
-         <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password"/>
-         <br/>
-         <input type="submit"/>
+         <label>
+            <span className="name_of_input">Your name</span>
+            <p className="message_of_error">{validations.name.error}</p>
+            <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name" />
+         </label>
+         <br />
+         <label>
+            <span className="name_of_input">Your e-mail</span>
+            <p className="message_of_error">{validations.email.error}</p>
+            <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email" />
+         </label>
+         <br />
+         <label>
+            <span className="name_of_input">Your password</span>
+            <p className="message_of_error">{validations.password.error}</p>
+            <InputHooks type="password" className="login_hooks" value={values.password} onChange={handleChanges} name="password" />
+         </label>
+         <br />
+         <label>
+            <span className="name_of_input">Confirm Your password</span>
+            <p className="message_of_error">{validations.confirm_password.error}</p>
+            <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password" />
+         </label>
+         <br />
+         <input type="submit" />
       </form>
    )
 }

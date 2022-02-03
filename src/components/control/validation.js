@@ -4,7 +4,7 @@ const validation = {
       if (regex.test(val)) {
          return ({valid : true,
             name : "name",
-            error : 'no'
+            error : ''
          })
       } else {
          return ({valid : false,
@@ -19,7 +19,7 @@ const validation = {
       if (regex.test(val)) {
          return ({valid : true,
             name : "email",
-            error : 'no'
+            error : ''
          })
       } else {
          return ({valid : false,
@@ -30,16 +30,30 @@ const validation = {
    },
 
    pass: (val) => {
-      const regex = /(\d+\w+) | (\w+\d+)/;
+      const regex = /[\d+\w+][\w+\d+]/;
       if (regex.test(val)) {
          return ({valid : true,
-            name : "pass",
-            error : 'no'
+            name : "password",
+            error : ''
          })
       } else {
          return ({valid : false,
-            name : "pass",
+            name : "password",
             error : 'at least 1 digit and 1 letter are expected'
+         })
+      }
+   },
+
+   confirmPass: (val,val_first) => {
+      if (val_first === val) {
+         return ({valid : true,
+            name : "confirm_password",
+            error : ''
+         })
+      } else {
+         return ({valid : false,
+            name : "confirm_password",
+            error : "password isn't confirmed",
          })
       }
    }
