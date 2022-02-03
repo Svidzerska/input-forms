@@ -18,13 +18,15 @@ function LoginHooks(props) {
    } 
 
    return (
-      <form onSubmit={handleSubmit}>
-         <InputHooks type="text" className="login_hooks" onChange={handleChanges} name="login"/>
-         <br/>
-         <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="password"/>
-         <br/>
-         <input type="submit"/>
-      </form>
+      <div className="form_login">
+         <form onSubmit={handleSubmit}>
+            <InputHooks type="text" className="login_hooks" onChange={handleChanges} name="login" />
+            <br />
+            <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="password" />
+            <br />
+            <input type="submit" value="Submit" />
+         </form>
+      </div>
    )
 }
 

@@ -1,0 +1,14 @@
+.information_card {
+   margin: 20px;
+   text-align: start;
+   border: 2px solid rgb(171, 130, 238);
+   border-radius: 20px;
+   box-shadow: 4px 4px 4px gainsboro;
+   padding: 40px;
+}
+
+.information_card > p {
+   font-family: 'Roboto';
+   font-weight: 400;
+   line-height: 24px;
+}

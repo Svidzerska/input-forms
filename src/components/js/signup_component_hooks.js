@@ -69,33 +69,35 @@ function SignupHooks(props) {
    }
 
    return (
-      <form onSubmit={handleSubmit}>
-         <label>
-            <span className="name_of_input">Your name</span>
-            <p className="message_of_error">{validations.name.error}</p>
-            <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name" />
-         </label>
-         <br />
-         <label>
-            <span className="name_of_input">Your e-mail</span>
-            <p className="message_of_error">{validations.email.error}</p>
-            <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email" />
-         </label>
-         <br />
-         <label>
-            <span className="name_of_input">Your password</span>
-            <p className="message_of_error">{validations.password.error}</p>
-            <InputHooks type="password" className="login_hooks" value={values.password} onChange={handleChanges} name="password" />
-         </label>
-         <br />
-         <label>
-            <span className="name_of_input">Confirm Your password</span>
-            <p className="message_of_error">{validations.confirm_password.error}</p>
-            <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password" />
-         </label>
-         <br />
-         <input type="submit" />
-      </form>
+      <div className="form_valid">
+         <form onSubmit={handleSubmit}>
+            <label>
+               <span className="name_of_input">Your name</span>
+               <p className="message_of_error">{validations.name.error}</p>
+               <InputHooks type="text" className="login_hooks" value={values.name} onChange={handleChanges} name="name" />
+            </label>
+            <br />
+            <label>
+               <span className="name_of_input">Your e-mail</span>
+               <p className="message_of_error">{validations.email.error}</p>
+               <InputHooks type="email" className="login_hooks" value={values.email} onChange={handleChanges} name="email" />
+            </label>
+            <br />
+            <label>
+               <span className="name_of_input">Your password</span>
+               <p className="message_of_error">{validations.password.error}</p>
+               <InputHooks type="password" className="login_hooks" value={values.password} onChange={handleChanges} name="password" />
+            </label>
+            <br />
+            <label>
+               <span className="name_of_input">Confirm Your password</span>
+               <p className="message_of_error">{validations.confirm_password.error}</p>
+               <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password" />
+            </label>
+            <br />
+            <input type="submit" value="Submit" />
+         </form>
+      </div>
    )
 }
 

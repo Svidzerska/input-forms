@@ -8,12 +8,20 @@ form .login_hooks {
    height: 30px;
    margin: 10px;
    box-sizing: border-box;
-   border: 1px solid rgb(255, 155, 155);
+   border: 1px solid rgb(214, 164, 255);
 }
 
 form > input[type="submit"] {
    width: 200px;
-   border: 2px solid red;
+   border: 2px solid rgb(112, 17, 149);
    border-radius: 25px;
    cursor: pointer;
+}
+
+.form_login {
+   border: 3px solid rgb(59, 9, 93);
+   width: fit-content;
+   margin-left: auto;
+   margin-right: auto;
+   box-shadow: 5px 4px 4px 6px gray;
 }
