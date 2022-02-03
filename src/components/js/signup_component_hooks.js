@@ -54,6 +54,7 @@ function SignupHooks(props) {
       // validate(values); //is this call needed? I think no.
 
       setValidation(validate(values));
+      console.log(values);
    }
 
 

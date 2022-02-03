@@ -1,6 +1,11 @@
 import './App.css';
-// import InputClass from './components/js/input_component_class.js';
-// import InputHooks from './components/js/input_component_hooks.js';
+import {
+   BrowserRouter as Router,
+   Routes,
+   Route,
+   Link
+} from "react-router-dom";
+
 
 import LoginClass from './components/js/login_component_class.js';
 import LoginHooks from './components/js/login_component_hooks.js';
@@ -9,19 +14,28 @@ import SignupHooks from './components/js/signup_component_hooks';
 
 function App() {
    return (
-      <div>
-         {/* <InputClass className="example_1" name="input_first" onChange={()=>{}}/>
-         <br/>
-         <InputClass name="input_second" />
-         <br/>
-         <br/>
-         <InputHooks name="input_first_hooks"/> */}
-
-         <LoginHooks />
-         <LoginClass />
-         <SignupClass />
-         <SignupHooks />
-      </div>
+      <Router>
+         <div>
+            <nav>
+               <ul>
+                  <li>
+                     <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                     <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                     <Link to="/signup">Sign Up</Link>
+                  </li>
+               </ul>
+            </nav>
+            <Routes>
+               <Route path="/login" element={<LoginHooks/>} />
+               <Route path="/signup" element={<SignupHooks />} />
+               <Route path="/" element={<LoginClass />} />
+            </Routes>
+         </div>
+      </Router>
    );
 }
 
