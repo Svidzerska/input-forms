@@ -40,20 +40,16 @@ function SignupHooks(props) {
 
    useEffect(() => {
       console.log(validations);
-      console.log(values);
 
-      if(validations.name.valid && validations.name.name !== undefined && values.name !== '' &&
-         validations.email.valid && validations.email.name !== undefined && values.email !== '' &&
-         validations.password.valid && validations.password.name !== undefined && values.password !== '' &&
-         validations.confirm_password.valid && validations.confirm_password.name !== undefined && values.confirm_password !== '') {
-            
+      if(validations.name.valid && validations.name.name !== undefined &&
+         validations.email.valid && validations.email.name !== undefined && 
+         validations.password.valid && validations.password.name !== undefined && 
+         validations.confirm_password.valid && validations.confirm_password.name !== undefined ) {
             Api.signup(values);
-            
       }
-
       // resetForm();
-         
-   }, [validations,values]); //problems
+   }, [validations, values]); //problems
+
 
    const handleChanges = (event) => {
       const name = event.target.name;
@@ -75,16 +71,11 @@ function SignupHooks(props) {
    const handleSubmit = (event) => {
       event.preventDefault();
       // resetForm();
-
-      // validate(values); //is this call needed? I think no.
-
       setValidation(validate(values));
       console.log(values);
-
    }
 
-
-
+   
    const validate = (values) => {
       return {
          [validation.minLength(values.name).name]:validation.minLength(values.name),
