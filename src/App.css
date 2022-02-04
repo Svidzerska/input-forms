@@ -17,7 +17,10 @@
    border-radius: 10px;
    box-shadow: 1px 4px 4px gainsboro;
    padding: 5px;
-   
+}
+
+.navigation_tools > p {
+   background-color: white;
 }
 
 a {
@@ -32,3 +35,25 @@ a:hover {
 .home {
    background-color: rgb(217, 217, 255);
 }
+
+div.blue, div.yellow, div.orange, div.green {
+   background-size: cover;
+   padding-bottom: 100px;
+   box-shadow: 1px 10px 20px grey;
+}
+
+.blue {
+   background-image: url(./components/images/winter.jpg);
+}
+
+.yellow {
+   background-image: url(./components/images/autumn.jpg);
+}
+
+.orange {
+   background-image: url(./components/images/summer.jpg);
+}
+
+.green {
+   background-image: url(./components/images/spring.jpg);
+} 

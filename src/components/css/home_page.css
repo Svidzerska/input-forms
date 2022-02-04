@@ -5,6 +5,7 @@
    border-radius: 20px;
    box-shadow: 4px 4px 4px gainsboro;
    padding: 40px;
+   background-color: white;
 }
 
 .information_card > p {

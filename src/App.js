@@ -1,3 +1,5 @@
+import React, {useState} from "react";
+
 import './App.css';
 import {
    BrowserRouter as Router,
@@ -12,11 +14,15 @@ import LoginHooks from './components/js/login_component_hooks.js';
 import SignupClass from './components/js/signup_component_class';
 import SignupHooks from './components/js/signup_component_hooks';
 import HomePage from './components/js/home_page';
+import BackgroundChange from "./components/control/background_color";
 
 function App() {
+
+   let background = BackgroundChange(); //state?
+
    return (
       <Router>
-         <div>
+         <div className={background} >
             <div className='header'>
                <div>
                   <p className='home'>
@@ -34,7 +40,7 @@ function App() {
                   </div>
                </nav>
             </div>
-            
+
             <Routes>
                <Route path="/login" element={<LoginHooks/>} />
                <Route path="/signup" element={<SignupHooks />} />
