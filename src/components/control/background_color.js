@@ -2,7 +2,6 @@
 function BackgroundChange () {
    let date = new Date();
    let month = date.getMonth();
-   console.log(month);
    let background; 
    switch(month) {
       case 11:

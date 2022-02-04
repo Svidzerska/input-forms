@@ -20,8 +20,10 @@ function LoginHooks(props) {
    return (
       <div className="form_login">
          <form onSubmit={handleSubmit}>
+            <span className="name_of_input">Your name</span><br />
             <InputHooks type="text" className="login_hooks" onChange={handleChanges} name="login" />
             <br />
+            <span className="name_of_input">Your password</span><br />
             <InputHooks type="password" className="login_hooks" onChange={handleChanges} name="password" />
             <br />
             <input type="submit" value="Submit" />

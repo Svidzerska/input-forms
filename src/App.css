@@ -36,6 +36,10 @@ a:hover {
    background-color: rgb(217, 217, 255);
 }
 
+.nav-link.active {
+   color:rgb(255, 172, 70);
+}
+
 div.blue, div.yellow, div.orange, div.green {
    background-size: cover;
    padding-bottom: 100px;

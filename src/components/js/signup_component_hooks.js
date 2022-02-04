@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../css/login_component_hooks.css';
 import InputHooks from "./input_component_hooks";
 import validation from "../control/validation";
 import '../css/signup_component_hooks.css';
+import Api from "../control/Api";
+
 
 
 function SignupHooks(props) {
@@ -36,30 +38,49 @@ function SignupHooks(props) {
    const [validations, setValidation] = useState(initValidation);
 
 
+   useEffect(() => {
+      console.log(validations);
+      console.log(values);
+
+      if(validations.name.valid && validations.name.name !== undefined && values.name !== '' &&
+         validations.email.valid && validations.email.name !== undefined && values.email !== '' &&
+         validations.password.valid && validations.password.name !== undefined && values.password !== '' &&
+         validations.confirm_password.valid && validations.confirm_password.name !== undefined && values.confirm_password !== '') {
+            
+            Api.signup(values);
+            
+      }
+
+      // resetForm();
+         
+   }, [validations,values]); //problems
+
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
-      validChanges(values);
    }
 
-   const validChanges = (values) => {
-      setValidation(validate(values));
-   }
-
+   
    const resetForm = () => {
       setValues(initialState);
    }
 
+
+   const handleClear = (e) => {
+      e.preventDefault();
+      resetForm();
+   }
    
    const handleSubmit = (event) => {
       event.preventDefault();
-      resetForm();
+      // resetForm();
 
       // validate(values); //is this call needed? I think no.
 
-      // setValidation(validate(values));
+      setValidation(validate(values));
       console.log(values);
+
    }
 
 
@@ -102,6 +123,7 @@ function SignupHooks(props) {
             <br />
             <input type="submit" value="Submit" />
          </form>
+         <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>
    )
 }

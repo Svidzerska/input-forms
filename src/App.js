@@ -4,8 +4,7 @@ import './App.css';
 import {
    BrowserRouter as Router,
    Routes,
-   Route,
-   Link
+   Route
 } from "react-router-dom";
 
 
@@ -15,6 +14,7 @@ import SignupClass from './components/js/signup_component_class';
 import SignupHooks from './components/js/signup_component_hooks';
 import HomePage from './components/js/home_page';
 import BackgroundChange from "./components/control/background_color";
+import Header from "./components/js/header";
 
 function App() {
 
@@ -22,25 +22,8 @@ function App() {
 
    return (
       <Router>
-         <div className={background} >
-            <div className='header'>
-               <div>
-                  <p className='home'>
-                     <Link to="/">Home</Link>
-                  </p>
-               </div>
-               <nav>
-                  <div className='navigation_tools'>
-                     <p>
-                        <Link to="/login">Login</Link>
-                     </p>
-                     <p>
-                        <Link to="/signup">Sign Up</Link>
-                     </p>
-                  </div>
-               </nav>
-            </div>
-
+         <div className={background}>
+            <Header/>
             <Routes>
                <Route path="/login" element={<LoginHooks/>} />
                <Route path="/signup" element={<SignupHooks />} />
