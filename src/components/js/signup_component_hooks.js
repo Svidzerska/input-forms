@@ -36,25 +36,44 @@ function SignupHooks(props) {
 
    const [values, setValues] = useState(initialState);
    const [validations, setValidation] = useState(initValidation);
+   const [validValues, setValidValues] = useState({});
 
+   
+
+   const validValue = () => {
+      if (validations.name.valid &&
+         validations.email.valid &&
+         validations.password.valid && 
+         validations.confirm_password.valid) {
+            setValidValues({...validValues, values});
+      }
+   }
 
    useEffect(() => {
       console.log(validations);
-
       if(validations.name.valid && validations.name.name !== undefined &&
          validations.email.valid && validations.email.name !== undefined && 
          validations.password.valid && validations.password.name !== undefined && 
          validations.confirm_password.valid && validations.confirm_password.name !== undefined ) {
-            Api.signup(values);
+            Api.signup(validValues);
       }
       // resetForm();
-   }, [validations, values]); //problems
+   }, [validations, validValues]); //problems
 
 
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
+
+      if (validations.name.name &&
+         validations.email.name &&
+         validations.password.name &&
+         validations.confirm_password.name) {
+         setValidation(validate(values)); 
+      }
+
+      validValue();
    }
 
    
