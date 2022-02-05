@@ -18,6 +18,15 @@ form > input[type="submit"] {
    cursor: pointer;
 }
 
+
+.valid_submit {
+   background-image: linear-gradient(50deg, blue, pink);
+}
+
+/* .unvalid {
+
+} */
+
 .form_login {
    border: 3px solid rgb(59, 9, 93);
    width: fit-content;

@@ -14,7 +14,7 @@ function SignupHooks(props) {
       password: '',
       confirm_password: ''
    };
-   
+
    const initValidation = {
       name: {
          valid: true,
@@ -36,47 +36,45 @@ function SignupHooks(props) {
 
    const [values, setValues] = useState(initialState);
    const [validations, setValidation] = useState(initValidation);
-   const [validValues, setValidValues] = useState({});
+   const [isValid, setIsValid] = useState(false);
 
-   
-
-   const validValue = () => {
-      if (validations.name.valid &&
-         validations.email.valid &&
-         validations.password.valid && 
-         validations.confirm_password.valid) {
-            setValidValues({...validValues, values});
-      }
-   }
 
    useEffect(() => {
-      console.log(validations);
-      if(validations.name.valid && validations.name.name !== undefined &&
-         validations.email.valid && validations.email.name !== undefined && 
-         validations.password.valid && validations.password.name !== undefined && 
-         validations.confirm_password.valid && validations.confirm_password.name !== undefined ) {
-            Api.signup(validValues);
+      if(isValid) {
+            Api.signup(values);
       }
-      // resetForm();
-   }, [validations, validValues]); //problems
+   }, [isValid, values]); //some problems
+
+
+   useEffect(()=> {
+      if(validations.name.valid && validations.name.name !== undefined &&
+         validations.email.valid && validations.email.name !== undefined &&
+         validations.password.valid && validations.password.name !== undefined &&
+         validations.confirm_password.valid && validations.confirm_password.name !== undefined ) {
+            setIsValid(true);
+      } else {
+         setIsValid(false);
+      }
+   }, [validations]);
+
+   useEffect(() => {
+      console.log(values);
+      if (values.name !== "" ||
+      values.email !== "" ||
+      values.password !== "" ||
+      values.confirm_password !== "") {
+         setValidation(validate(values));
+      }
+   }, [values]);
 
 
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
-
-      if (validations.name.name &&
-         validations.email.name &&
-         validations.password.name &&
-         validations.confirm_password.name) {
-         setValidation(validate(values)); 
-      }
-
-      validValue();
    }
 
-   
+
    const resetForm = () => {
       setValues(initialState);
    }
@@ -86,7 +84,7 @@ function SignupHooks(props) {
       e.preventDefault();
       resetForm();
    }
-   
+
    const handleSubmit = (event) => {
       event.preventDefault();
       // resetForm();
@@ -94,7 +92,7 @@ function SignupHooks(props) {
       console.log(values);
    }
 
-   
+
    const validate = (values) => {
       return {
          [validation.minLength(values.name).name]:validation.minLength(values.name),
@@ -131,7 +129,7 @@ function SignupHooks(props) {
                <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password" />
             </label>
             <br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/>
          </form>
          <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>
