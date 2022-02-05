@@ -37,13 +37,16 @@ function SignupHooks(props) {
    const [values, setValues] = useState(initialState);
    const [validations, setValidation] = useState(initValidation);
    const [isValid, setIsValid] = useState(false);
+   const [isSubmit, setIsSubmit] = useState(false);
+   const [isProgress, setIsProgress] = useState(false);
 
 
    useEffect(() => {
-      if(isValid) {
+      if(isValid && isSubmit) {
             Api.signup(values);
+            setIsSubmit(false);
       }
-   }, [isValid, values]); //some problems
+   }, [isValid, values, isSubmit]); //some problems
 
 
    useEffect(()=> {
@@ -88,8 +91,10 @@ function SignupHooks(props) {
    const handleSubmit = (event) => {
       event.preventDefault();
       // resetForm();
-      setValidation(validate(values));
+      // setValidation(validate(values));
       console.log(values);
+      setIsSubmit(true);
+      setIsProgress(true);
    }
 
 
@@ -129,8 +134,11 @@ function SignupHooks(props) {
                <InputHooks type="password" className="login_hooks" value={values.confirm_password} onChange={handleChanges} name="confirm_password" />
             </label>
             <br />
+           
             <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/>
          </form>
+
+         <div className={(isProgress && isValid) ? "animate_progress": "stop"}><p></p></div>
          <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>
    )
