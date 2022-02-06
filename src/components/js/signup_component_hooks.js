@@ -75,11 +75,16 @@ function SignupHooks(props) {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
+      setIsProgress(false);
    }
 
 
    const resetForm = () => {
       setValues(initialState);
+      setIsSubmit(false);
+      setIsValid(false);
+      setIsProgress(false);
+      console.log(isSubmit);
    }
 
 
@@ -135,7 +140,7 @@ function SignupHooks(props) {
             </label>
             <br />
            
-            <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/>
+            <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
 
          <div className={(isProgress && isValid) ? "animate_progress": "stop"}><p></p></div>

@@ -2,9 +2,21 @@
 const Api = {
    signup: (user) => {
       wait(3000).then(()=> {
-        let users = [JSON.stringify(user)];
-        localStorage.setItem("Users",users); //array users
-        return user;
+         let usersArr = JSON.parse(localStorage.getItem("Users")); //[]
+         console.log(usersArr);
+
+         if (usersArr) {
+            usersArr.push(user);
+            let users = JSON.stringify(usersArr);
+            localStorage.setItem("Users",users);
+            return usersArr;
+
+         } else {
+            usersArr = [user];
+            let users = JSON.stringify(usersArr);
+            localStorage.setItem("Users",users);
+            return usersArr;
+         }
       });
    },
 
