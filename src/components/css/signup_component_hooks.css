@@ -49,15 +49,6 @@
    to {left: 260px;}
 }
 
-
-.animate_progress { 
-   animation-name: progress;
-   animation-duration: 3s;
-   animation-timing-function: linear;
-   animation-direction: alternate;
-   animation-fill-mode: forwards;
-}
-
 .stop > p, .animate_progress > p {
    position:absolute;
    box-sizing: border-box;
@@ -66,4 +57,9 @@
    background-color: rgb(214, 164, 255);
    height: 20px;
    width: 40px;
+   animation-name: progress;
+   animation-duration: 3s;
+   animation-timing-function: linear;
+   animation-direction: alternate;
+   animation-fill-mode: forwards;
 }
