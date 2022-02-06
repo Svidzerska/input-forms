@@ -6,10 +6,20 @@ const Api = {
          console.log(usersArr);
 
          if (usersArr) {
-            usersArr.push(user);
-            let users = JSON.stringify(usersArr);
-            localStorage.setItem("Users",users);
-            return usersArr;
+            usersArr.forEach(element => {
+               if (user.name === element.name &&
+                  user.email === element.email &&
+                  user.password === element.password && 
+                  user.confirm_password === element.confirm_password) {
+                     return "this user is already existed";
+               } else {
+                  usersArr.push(user);
+                  let users = JSON.stringify(usersArr);
+                  localStorage.setItem("Users",users);
+                  return usersArr;
+               }
+            });
+            
 
          } else {
             usersArr = [user];

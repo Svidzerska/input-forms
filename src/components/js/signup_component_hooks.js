@@ -34,11 +34,14 @@ function SignupHooks(props) {
       }
    }
 
+   
+
    const [values, setValues] = useState(initialState);
    const [validations, setValidation] = useState(initValidation);
    const [isValid, setIsValid] = useState(false);
    const [isSubmit, setIsSubmit] = useState(false);
    const [isProgress, setIsProgress] = useState(false);
+   // const [isResult,setIsResult] = useState({});
 
 
    useEffect(() => {
@@ -142,7 +145,7 @@ function SignupHooks(props) {
            
             <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
-
+         <p>{""}</p>
          <div className={(isProgress && isValid) ? "animate_progress": "stop"}><p></p></div>
          <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>
