@@ -31,8 +31,27 @@ const Api = {
       });
    },
 
-   login: (props) => {
-      wait(3000).then(() => JSON.parse(localStorage.getItem(props.name)));
+   login: (user) => {
+      wait(3000).then(() =>  {
+         let usersArr = JSON.parse(localStorage.getItem("Users"));
+         console.log(usersArr);
+
+         if (usersArr) {
+            let result = usersArr.find(element =>
+               user.login === element.name &&
+               user.password === element.password
+            );
+
+            if (!result) {
+               return console.log("user doesn't exist: please sign-up");
+            } else if (result) {
+               return console.log("log-in is successed");
+            }
+            
+         } else {
+               return console.log("user doesn't exist: please sign-up");
+         }
+      });
    }
 }
 
