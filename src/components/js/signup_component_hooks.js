@@ -47,6 +47,7 @@ function SignupHooks(props) {
    const [isSubmit, setIsSubmit] = useState(false);
    const [isProgress, setIsProgress] = useState(false);
 
+
    const [isResult,setIsResult] = useState(initialResult);
 
 

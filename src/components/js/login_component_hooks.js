@@ -16,6 +16,9 @@ function LoginHooks(props) {
    const [isResult,setIsResult] = useState(initialResult);
 
    const [isSubmit, setIsSubmit] = useState(false);
+   
+   const [error, setError] = useState(false);
+
 
    useEffect(()=> {
       if (values.login && values.password) {
@@ -44,6 +47,7 @@ function LoginHooks(props) {
    }
 
    const handleSubmit = (event) => {
+      try {
       event.preventDefault();
       console.log(values);
       if (values.login && values.password) {
@@ -53,6 +57,9 @@ function LoginHooks(props) {
       }
       setIsSubmit(true);
       setIsType(false);
+   } catch {
+      setError(true);
+   }
    } 
 
    function isAuth() {
@@ -76,7 +83,7 @@ function LoginHooks(props) {
          </form>
          <div className={(isSubmit && values.login && values.password) ? "animate_progress": "stop"}><p></p></div>
          <p className="login_information">
-            {isResult.information}
+            {!error ? isResult.information : "something is wrong"}
          </p>
       </div>
    )
