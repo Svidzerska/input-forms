@@ -39,7 +39,8 @@ function App() {
          <div className={background}>
             <Header/>
             <Routes>
-               <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} />
+               {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
+               <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} />
                <Route path="/signup" element={<SignupHooks />} />
                <Route path="/" element={<HomePage />} />
                <Route path="/dashboard" element={<PrivateRoute authed={isAuth} component={Dashboard}/>} />

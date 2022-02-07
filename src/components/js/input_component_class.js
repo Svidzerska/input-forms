@@ -6,30 +6,29 @@ class InputClass extends React.Component {
       super(props);
       this.state = {_value: ''};
    }
-   
-   handleChange = (event) => {
-      this.setState({value:event.target.value});
 
+   handleChange = (event) => {
+      this.setState({_value:event.target.value});
       if (this.props.onChange) {
          this.props.onChange(event);
       }
    }
-  
+
    render() {
       const {
          className,
          placeholder,
          name,
-         type, 
+         type,
          value
       } = this.props;
-      
+
       return (
          <input type={type}
             className={className}
             placeholder={placeholder}
             value={typeof value !== "undefined" ? value : this.state._value}
-            onChange={this.handleChange} 
+            onChange={this.handleChange}
             name={name} />
       );
    }

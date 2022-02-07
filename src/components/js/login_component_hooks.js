@@ -16,7 +16,6 @@ function LoginHooks(props) {
    const [isResult,setIsResult] = useState(initialResult);
 
    const [isSubmit, setIsSubmit] = useState(false);
-   
    const [error, setError] = useState(false);
 
 
