@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 
 import './App.css';
 import {
@@ -15,19 +15,34 @@ import SignupHooks from './components/js/signup_component_hooks';
 import HomePage from './components/js/home_page';
 import BackgroundChange from "./components/control/background_color";
 import Header from "./components/js/header";
+import PrivateRoute from "./components/js/private_route";
+import Dashboard from "./components/js/dashboard";
+
 
 function App() {
 
    let background = BackgroundChange(); //state?
+   const [isAuth, setIsAuth] = useState(false);
+   const [currentUser, setCurrentUser] = useState({});
+
+   const updateData = (values) => {
+      setIsAuth(true);
+   }
+
+   const updateUser = (current_user) => {
+      setCurrentUser(current_user);
+      console.log(currentUser);
+   }
 
    return (
       <Router>
          <div className={background}>
             <Header/>
             <Routes>
-               <Route path="/login" element={<LoginHooks/>} />
+               <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} />
                <Route path="/signup" element={<SignupHooks />} />
-               <Route path="/" element={<HomePage/>} />
+               <Route path="/" element={<HomePage />} />
+               <Route path="/dashboard" element={<PrivateRoute authed={isAuth} component={Dashboard}/>} />
             </Routes>
          </div>
       </Router>

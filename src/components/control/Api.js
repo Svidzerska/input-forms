@@ -1,8 +1,8 @@
 
 const Api = {
    signup: (user) => {
-      wait(3000).then(() => {
-         let usersArr = JSON.parse(localStorage.getItem("Users")); //[]
+      return wait(3000).then(() => {
+         let usersArr = JSON.parse(localStorage.getItem("Users"));
          console.log(usersArr);
 
          if (usersArr) {
@@ -19,20 +19,20 @@ const Api = {
                localStorage.setItem("Users", users);
                return usersArr;
             } else if (result) {
-               return console.log("this user is already existed");
+               return "the user already exists";
             }
-            
+
          } else {
-               usersArr = [user];
-               let users = JSON.stringify(usersArr);
-               localStorage.setItem("Users", users);
-               return usersArr;
+            usersArr = [user];
+            let users = JSON.stringify(usersArr);
+            localStorage.setItem("Users", users);
+            return usersArr;
          }
       });
    },
 
    login: (user) => {
-      wait(3000).then(() =>  {
+      return wait(3000).then(() => {
          let usersArr = JSON.parse(localStorage.getItem("Users"));
          console.log(usersArr);
 
@@ -43,13 +43,25 @@ const Api = {
             );
 
             if (!result) {
-               return console.log("user doesn't exist: please sign-up");
+               return ({
+                  information: "a user doesn't exist: please sign-up",
+                  current_user: ""
+               }
+               );
             } else if (result) {
-               return console.log("log-in is successed");
+               return ({
+                  information: "log-in is successed",
+                  current_user: result
+               }
+               );
             }
-            
+
          } else {
-               return console.log("user doesn't exist: please sign-up");
+            return ({
+               information: "a user doesn't exist: please sign-up",
+               current_user: ""
+            }
+            );
          }
       });
    }

@@ -31,6 +31,20 @@
    cursor: pointer;
 }
 
+.signup_res_err {
+   width: 300px;
+   color: rgb(194, 0, 0);
+   font-weight: 700;
+   padding-left: 20px;
+}
+
+.signup_res_user {
+   width: 300px;
+   color: rgb(39, 233, 0);
+   font-weight: 700;
+   padding-left: 20px;
+}
+
 .stop, .animate_progress {
    width: 300px;
    height: 20px;
@@ -45,8 +59,8 @@
 }
 
 @keyframes progress {
-   from {left:0;}
-   to {left: 260px;}
+   from {width: 40px; background-color: rgb(214, 164, 255); opacity: 0.1}
+   to {width: 300px; background-color: blue; opacity: 0.9;}
 }
 
 .stop > p, .animate_progress > p {

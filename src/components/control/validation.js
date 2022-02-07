@@ -30,7 +30,7 @@ const validation = {
    },
 
    pass: (val) => {
-      const regex = /[\d+\w+][\w+\d+]/;
+      const regex = /\d[a-zA-Z]|[a-zA-Z]\d/;
       if (regex.test(val)) {
          return ({valid : true,
             name : "password",

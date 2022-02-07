@@ -34,6 +34,11 @@ function SignupHooks(props) {
       }
    }
 
+   const initialResult = {
+      error:"",
+      current_user:""
+   }
+
    
 
    const [values, setValues] = useState(initialState);
@@ -41,15 +46,21 @@ function SignupHooks(props) {
    const [isValid, setIsValid] = useState(false);
    const [isSubmit, setIsSubmit] = useState(false);
    const [isProgress, setIsProgress] = useState(false);
-   // const [isResult,setIsResult] = useState({});
+
+   const [isResult,setIsResult] = useState(initialResult);
 
 
    useEffect(() => {
       if(isValid && isSubmit) {
-            Api.signup(values);
+            Api.signup(values).then((result) => {
+               
+               setIsResult({...isResult,
+               error: typeof result === "string" ? result : '',
+               current_user: typeof result !== "string" ? result[result.length -1] : ""});
+            });
             setIsSubmit(false);
       }
-   }, [isValid, values, isSubmit]); //some problems
+   }, [isValid, values, isSubmit, isResult]); //some problems
 
 
    useEffect(()=> {
@@ -79,6 +90,7 @@ function SignupHooks(props) {
       const value = event.target.value;
       setValues({...values,[name]:value});
       setIsProgress(false);
+      setIsResult({...isResult, error: '', current_user: ''});
    }
 
 
@@ -87,7 +99,7 @@ function SignupHooks(props) {
       setIsSubmit(false);
       setIsValid(false);
       setIsProgress(false);
-      console.log(isSubmit);
+      setIsResult({...isResult, error: '', current_user: ''});
    }
 
 
@@ -145,7 +157,10 @@ function SignupHooks(props) {
            
             <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
-         <p>{""}</p>
+         <p className={isResult.error !== "" ? "signup_res_err" : "signup_res_user"}>
+            {isResult.error !== "" ? isResult.error :
+            (isResult.current_user !== '' ? "you are successfully signed up as " + isResult.current_user.name : '')}
+         </p>
          <div className={(isProgress && isValid) ? "animate_progress": "stop"}><p></p></div>
          <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>

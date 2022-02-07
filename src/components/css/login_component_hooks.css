@@ -36,3 +36,10 @@ form > input[type="submit"] {
    box-shadow: 4px 4px 6px 1px rgba(128, 128, 128, 0.404);
    background-color: white;
 }
+
+.login_information {
+   width: 300px;
+   color: rgb(0, 120, 233);
+   font-weight: 700;
+   padding-left: 20px;
+}

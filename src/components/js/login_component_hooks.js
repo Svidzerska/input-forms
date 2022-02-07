@@ -5,30 +5,63 @@ import InputHooks from "./input_component_hooks";
 import Api from "../control/Api";
 
 function LoginHooks(props) {
+
+   const initialResult = {
+      information:"",
+      current_user:""
+   }
+
    const [values, setValues] = useState({});
    const [isType, setIsType] = useState(false);
+   const [isResult,setIsResult] = useState(initialResult);
+
+   const [isSubmit, setIsSubmit] = useState(false);
 
    useEffect(()=> {
       if (values.login && values.password) {
          setIsType(true);
-         console.log(isType);
       } else {
          setIsType(false);
       }
    }, [values, isType]);
 
+   useEffect(() => {
+      if (isResult.information === "log-in is successed") {
+         isAuth();
+         if(isResult.current_user !== "") {
+            currentUser();
+         }
+      }
+
+   },[isResult, isAuth, currentUser]);
+
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
+      setIsSubmit(false);
+      setIsResult({...isResult, information:"", current_user:""});
    }
 
    const handleSubmit = (event) => {
       event.preventDefault();
       console.log(values);
-      Api.login(values);
+      if (values.login && values.password) {
+      Api.login(values).then((result) =>  {
+         setIsResult({...isResult, information:result.information, current_user:result.current_user});
+      });
+      }
+      setIsSubmit(true);
       setIsType(false);
    } 
+
+   function isAuth() {
+      props.updateData(values);
+   }
+
+   function currentUser() {
+      props.updateUser(isResult.current_user);
+   }
 
    return (
       <div className="form_login">
@@ -41,6 +74,10 @@ function LoginHooks(props) {
             <br />
             <input type="submit" value="Submit" className={isType ? "valid_submit" : "unvalid"}/>
          </form>
+         <div className={(isSubmit && values.login && values.password) ? "animate_progress": "stop"}><p></p></div>
+         <p className="login_information">
+            {isResult.information}
+         </p>
       </div>
    )
 }

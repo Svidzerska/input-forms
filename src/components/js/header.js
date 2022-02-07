@@ -24,6 +24,11 @@ function Header() {
                      Sign Up
                   </NavLink>
                </p>
+               <p>
+                  <NavLink to="/dashboard" className="nav-link">
+                     Dashboard
+                  </NavLink>
+               </p>
             </div>
          </nav>
       </div>
