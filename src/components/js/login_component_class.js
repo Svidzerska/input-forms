@@ -1,6 +1,6 @@
 import React from "react";
 import InputClass from "./input_component_class";
-import '../css/login_component_class.css';
+import '../css/login_component.css';
 import Api from "../control/Api";
 
 const initialResult = {
@@ -100,10 +100,10 @@ class LoginClass extends React.Component {
          <div className="form_login">
             <form onSubmit={this.onSubmit}>
                <span className="name_of_input">Your name</span><br />
-               <InputClass className="login_class" type="text" onChange={this.handleChange} name="login" />
+               <InputClass className="login_input" type="text" onChange={this.handleChange} name="login" />
                <br />
                <span className="name_of_input">Your password</span><br />
-               <InputClass className="login_class" type="password" onChange={this.handleChange} name="password" />
+               <InputClass className="login_input" type="password" onChange={this.handleChange} name="password" />
                <br />
                <button type="submit" className={this.state.isType ? "valid_submit" : "unvalid"}>Login</button>
             </form>

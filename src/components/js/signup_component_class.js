@@ -1,6 +1,5 @@
 import React from "react";
 import InputClass from "./input_component_class";
-import '../css/login_component_class.css';
 
 const initialState = {
    name: '',

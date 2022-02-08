@@ -1,13 +1,22 @@
-.login_press {
-   width: 200px;
-   height: 30px;
-   border: 2px solid green;
-   border-radius: 25px;
-   cursor: pointer;
+.form_login {
+   border: 3px solid rgb(59, 9, 93);
+   width: fit-content;
+   margin-left: auto;
+   margin-right: auto;
+   box-shadow: 4px 4px 6px 1px rgba(128, 128, 128, 0.404);
+   background-color: white;
+}
+
+form {
    margin: 10px;
 }
 
-.login_class,  form > button {
+.name_of_input {
+   font-size: 16px;
+   font-weight: 700;
+}
+
+.form_login .login_input, .form_login  form > button {
    width: 300px;
    height: 30px;
    margin: 10px;
@@ -15,7 +24,7 @@
    border: 1px solid rgb(214, 164, 255);
 }
 
-form > input[type="submit"], form > button {
+.form_login form > input[type="submit"], .form_login form > button {
    width: 200px;
    border: 2px solid rgb(112, 17, 149);
    border-radius: 25px;
@@ -70,13 +79,8 @@ form > input[type="submit"], form > button {
 }
 
 
-.form_login {
-   border: 3px solid rgb(59, 9, 93);
-   width: fit-content;
-   margin-left: auto;
-   margin-right: auto;
-   box-shadow: 4px 4px 6px 1px rgba(128, 128, 128, 0.404);
-   background-color: white;
-}
+
+
+
 
 

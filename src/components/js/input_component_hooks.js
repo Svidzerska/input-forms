@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../css/input_component_hooks.css';
+import '../css/input_component.css';
 
 
 
