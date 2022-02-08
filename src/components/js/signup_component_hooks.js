@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import InputHooks from "./input_component_hooks";
+import InputHooks from "./Input_component_hooks";
 import validation from "../control/validation";
 import '../css/signup_component_hooks.css';
-import Api from "../control/Api";
+import Api from "../control/api";
 
 
 

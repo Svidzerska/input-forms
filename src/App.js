@@ -8,15 +8,15 @@ import {
 } from "react-router-dom";
 
 
-import LoginClass from './components/js/login_component_class.js';
-import LoginHooks from './components/js/login_component_hooks.js';
-import SignupClass from './components/js/signup_component_class';
-import SignupHooks from './components/js/signup_component_hooks';
-import HomePage from './components/js/home_page';
+import LoginClass from './components/js/Login_component_class.js';
+import LoginHooks from './components/js/Login_component_hooks.js';
+import SignupClass from './components/js/Signup_component_class';
+import SignupHooks from './components/js/Signup_component_hooks';
+import HomePage from './components/js/Home_page';
 import BackgroundChange from "./components/control/background_color";
-import Header from "./components/js/header";
+import Header from "./components/js/Header";
 import PrivateRoute from "./components/js/private_route";
-import Dashboard from "./components/js/dashboard";
+import Dashboard from "./components/js/Dashboard";
 
 
 function App() {

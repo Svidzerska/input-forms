@@ -1,7 +1,7 @@
 import React from "react";
-import InputClass from "./input_component_class";
+import InputClass from "./Input_component_class";
 import '../css/login_component.css';
-import Api from "../control/Api";
+import Api from "../control/api";
 
 const initialResult = {
    information:"",

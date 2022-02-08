@@ -1,5 +1,5 @@
 import React from "react";
-import InputClass from "./input_component_class";
+import InputClass from "./Input_component_class";
 
 const initialState = {
    name: '',

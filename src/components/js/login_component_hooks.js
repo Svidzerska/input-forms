@@ -1,8 +1,8 @@
 import React, {useState,useEffect} from "react";
 import '../css/login_component.css';
-import InputHooks from "./input_component_hooks";
+import InputHooks from "./Input_component_hooks";
 
-import Api from "../control/Api";
+import Api from "../control/api";
 
 function LoginHooks(props) {
 
