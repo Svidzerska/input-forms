@@ -6,11 +6,14 @@ import '../css/input_component.css';
 function InputHooks(props) {
    const [_value, setValue] = useState("");
    const {
+      name,
       type = "text",
+      hideInput,
+      required,
       placeholder,
+      validations,
       onChange = () => {},
       className, 
-      name,
       value
    } = props;
 
@@ -20,12 +23,16 @@ function InputHooks(props) {
    }
 
    return (
-      <input type={type}
+      <input name={name} 
+         type={type}
+         hideInput={hideInput}
+         required={required}
          placeholder={placeholder}
          className={className}
+         validations={validations}
          value={typeof value !== "undefined" ? value : _value}
          onChange={onChangeHandler}
-         name={name} />
+         />
    )
 }
 

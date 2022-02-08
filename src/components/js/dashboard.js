@@ -1,4 +1,6 @@
 import foto from '../images/mikaela_shiffrin.jpg';
+import FormBuilder from './FormBuilder';
+import propsField from "../control/props_field.js";
 
 function Dashboard(props) {
    return (
@@ -9,6 +11,7 @@ function Dashboard(props) {
             <p>Mikaela Shiffrin</p>
             <p><img src={foto} alt="mikaela" width="100%"></img></p>
          </div>
+         <FormBuilder data={propsField}/>
       </div>
    )
 }
