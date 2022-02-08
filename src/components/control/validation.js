@@ -1,7 +1,7 @@
 const validation = {
-   minLength: (val) => {
+   minLength: (val,minLength) => {
       // const regex = /^\S{4,15}$/;
-      if (val.length >= 4 && val.length <= 15 ) {
+      if (val.length >= minLength && val.length <= 15 ) {
          return ({valid : true,
             name : "name",
             error : ''

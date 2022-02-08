@@ -117,10 +117,9 @@ function SignupHooks(props) {
       setIsProgress(true);
    }
 
-
    const validate = (values) => {
       return {
-         [validation.minLength(values.name).name]:validation.minLength(values.name),
+         [validation.minLength(values.name,4).name]:validation.minLength(values.name,4),
          [validation.isEmail(values.email).name]:validation.isEmail(values.email),
          [validation.pass(values.password).name]:validation.pass(values.password),
          [validation.confirmPass(values.confirm_password,values.password).name]:validation.confirmPass(values.confirm_password,values.password)
