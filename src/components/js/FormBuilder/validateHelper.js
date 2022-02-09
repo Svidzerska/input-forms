@@ -19,20 +19,27 @@ const validate = (values,keys,validRules) => {
                resObj = Object.assign(
                   resObj,
                   { [keys[i]]: Object.assign(current_method, { [method]: validation[method](values[keys[i]], parameter) },
-                  {"method":method}) }
+                  ) }
                );
+               if (resObj[keys[i]]) {
+                  console.log(resObj.method);
+                  resObj = Object.assign(
+                  resObj, {"method": !resObj[keys[i]][method].valid ? method : resObj.method}
+               );
+               }
             } else {
                let parameter = arrayRules[j][method];
                resObj = Object.assign(
                   resObj, { [keys[i]]: Object.assign(current_method, { [method]: validation[method](values[keys[i]], parameter) },
-                  {"method":method}) }
+                  ) }
                   );
 
-               // console.log(resObj[keys[i]][method].valid);
-
-               // resObj = Object.assign(
-               //    resObj, {"method": resObj[keys[i]][method].valid ? method : "misunderstand"}
-               // );
+               if (resObj[keys[i]]) {
+                  console.log(resObj.method);
+                  resObj = Object.assign(
+                  resObj, {"method": !resObj[keys[i]][method].valid ? method : resObj.method}
+               );
+               }
             }
          }
       }

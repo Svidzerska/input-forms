@@ -14,7 +14,7 @@ const validation = {
    },
 
    isEmail: (val, regEx) => {
-      const regex = regEx;
+      const regex = regEx || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
       if (regex.test(val)) {
          return ({valid : true,
             name : "email",
