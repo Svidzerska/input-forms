@@ -57,7 +57,8 @@ const propsField = [
            minLength: 8,
          },
          {
-           name: 'password',
+           name: 'pass',
+           regEx: /\d[a-zA-Z]|[a-zA-Z]\d/
          },
        ],
      },
