@@ -22,8 +22,8 @@ const propsField = [
       validations: {
         onChange: [
           {
-            name: 'minLength',
-            minLength: 10,
+            name: 'isEmail',
+            isEmail: /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
           },
         ],
       },
@@ -46,7 +46,7 @@ const propsField = [
 
    {
      name: 'newPassword',
-     type: 'text',
+     type: 'password',
      hideInput: true,
      required: true,
      placeholder: 'New password',
@@ -58,7 +58,7 @@ const propsField = [
          },
          {
            name: 'pass',
-           regEx: /\d[a-zA-Z]|[a-zA-Z]\d/
+           pass: /\d[a-zA-Z]|[a-zA-Z]\d/
          },
        ],
      },
@@ -66,9 +66,16 @@ const propsField = [
 
    {
      name: 'confirmPassword',
-     type: 'text',
+     type: 'password',
      required: true,
      placeholder: 'Confirm Password',
+     validations: {
+      onChange: [
+        {
+          name: 'confirmPass',
+        },
+      ],
+    },
    },
 ];
 

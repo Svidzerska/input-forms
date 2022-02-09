@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import InputHooks from "./Input_component_hooks";
-import Select from "./Select_component";
-import validation from "../control/validation";
+import InputHooks from "../Input_component_hooks";
+import Select from "../Select_component";
+import validate from './validateHelper';
 
 
 
@@ -12,6 +12,7 @@ function FormBuilder(props) {
 
 
    const data = props.data; //array
+   let validRules = {};
 
 
    useEffect(()=> {
@@ -23,43 +24,46 @@ function FormBuilder(props) {
       console.log(values);
       console.log(Object.keys(values));
       const keys = Object.keys(values); //array
-      setGetValidations(validate(values,keys));
+      setGetValidations(validate(values,keys,validRules));
 
    },[values]);
 
 
-   const validate = (values,keys) => {
-      let resObj = {};
-      for (let i=0; i< keys.length; i++) {
-         resObj = Object.assign(
-          resObj, {[keys[i]]:validation.minLength(values[keys[i]],4)}
-         );
-      }
-      return (resObj);
-   }
-
+   
    const handleChanges = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setValues({...values,[name]:value});
    }
 
+   // const error = getValidations[area.name];
+   // console.log(error);
+
+
    const listArea = data.map(function(area) {
+
       const objectField = {
                select: Select,
                // checkbox: Checkbox,
-               text: InputHooks
+               text: InputHooks,
+               password: InputHooks
       }
       const Component = objectField[area.type];
 
-      return <Component key={area.name}
-         name={area.name}
-         type={area.type}
-         required={area.required}
-         placeholder={area.placeholder}
-         options={area.options}
-         onChange={handleChanges}
-      />
+      if (area.validations) {
+         console.log(area.validations.onChange);
+         validRules = Object.assign(validRules, {[area.name]:area.validations.onChange});
+      }
+
+      return (<label>
+         <span className="label__name_of_input">Your name</span>
+         <p className="message_of_error">{getValidations[area.name] ? getValidations[area.name][getValidations[area.name].method].error : ""}</p>
+         <Component key={area.name}
+            {...area}
+            onChange={handleChanges}
+         />
+      </label>
+      )
    });
 
 

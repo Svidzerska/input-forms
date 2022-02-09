@@ -1,5 +1,5 @@
 import foto from '../images/mikaela_shiffrin.jpg';
-import FormBuilder from './FormBuilder';
+import FormBuilder from './FormBuilder/FormBuilder';
 import propsField from "../control/props_field.js";
 
 function Dashboard(props) {

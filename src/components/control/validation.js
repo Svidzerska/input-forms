@@ -1,7 +1,6 @@
 const validation = {
    minLength: (val,minLength) => {
-      // const regex = /^\S{4,15}$/;
-      if (val.length >= minLength && val.length <= 15 ) {
+      if (val.length >= minLength && val.length <= 20 ) {
          return ({valid : true,
             name : "name",
             error : ''
@@ -9,13 +8,13 @@ const validation = {
       } else {
          return ({valid : false,
             name : "name",
-            error : 'from 4 to 15 symbols are needed'
+            error : `from ${minLength} to 15 symbols are needed`
          })
       }
    },
 
-   isEmail: (val) => {
-      const regex = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+   isEmail: (val, regEx) => {
+      const regex = regEx;
       if (regex.test(val)) {
          return ({valid : true,
             name : "email",
