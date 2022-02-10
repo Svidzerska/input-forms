@@ -26,36 +26,34 @@ function FormBuilder(props) {
       console.log(getValidations);
       const keys = Object.keys(values);  
 
-      let amountOfArea = keys?.filter(key => {
-         let objFalse = getValidations[key]?.find(rule => 
-            rule.valid 
-         ) 
+      keys?.map(key => {
+         let objFalse = getValidations[key];
+
+         let b = objFalse?.filter(result => 
+            result.valid
+         )
+
          console.log(objFalse);
+         console.log(b);
 
-         return !(objFalse === undefined);
-      });
+         if (objFalse?.length === b?.length && objFalse && b) {
+            setIsValid(true);
+         } else {
+            setIsValid(false);
+         }
 
-      console.log(amountOfArea, amountOfArea.length);
-      console.log(keys.length, keys);
-
-      if ((amountOfArea.length+2) === keys.length && amountOfArea.length !== 0) { //wrong!!!
-         setIsValid(true);
-      } else {
-         setIsValid(false);
-      }
-       
+         return objFalse;
+      })       
    }, [getValidations,values]);
 
+   useEffect(() => {
+      props.updateData(values,isValid);
+   }, [values, isValid]);
 
    useEffect(() =>{
-      console.log(values);
-      console.log(Object.keys(values));
       const keys = Object.keys(values); //array
       setGetValidations(validate(values,keys,validRules));
-      // props.updateData(values); //should be not work when unvalid
-      if (isValid) {
-         props.updateData(values);
-      }
+      
    },[values]);
 
 
@@ -92,7 +90,6 @@ function FormBuilder(props) {
       const Component = objectField[area.type];
 
       if (area.validations) {
-         console.log(area.validations.onChange);
          validRules = Object.assign(validRules, {[area.name]:area.validations.onChange});
       }
 

@@ -8,34 +8,32 @@ import Api from '../../control/api';
 function Form(props) {
 
    const [valuesResult, setValuesResult] = useState({});
-   const [isSubmit, setIsSubmit] = useState(false);
-   // const [isValid, setIsValid] = useState(false);
+   // const [isSubmit, setIsSubmit] = useState(false);
+   const [isValid, setIsValid] = useState(false);
 
-
-   
    useEffect(()=>{
-      if (isSubmit) {
-         Api.sendForm(valuesResult);
-      }
-      // setIsSubmit(false);
-   }, [valuesResult]);
+      console.log(isValid);
+   }, [isValid]);
 
-   const updateData = (values) => {
-      console.log(1111111111);
+   const updateData = (values,isValidState) => {
+      console.log(111111111);
+      console.log(isValidState);
       setValuesResult(values); 
-      // setIsValid(true); //only valid data
-      setIsSubmit(true);
+      setIsValid(isValidState);
    }
 
    const handleSubmit = (event) => {
       event.preventDefault();
       console.log(valuesResult);
+      if (isValid) {
+         Api.sendForm(valuesResult);
+      }
    }
 
    return (
          <form onSubmit={handleSubmit} className="formAll">
             <FormBuilder data={propsField} updateData={updateData}/>
-            <input type="submit" value="Submit" className={isSubmit ? "valid_submit" : "unvalid"}/> 
+            <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
    )
 }
