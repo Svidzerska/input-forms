@@ -3,6 +3,7 @@ import InputHooks from "../ElementForm/Input_component_hooks";
 import Select from "../ElementForm/Select_component";
 import validate from './validateHelper';
 import Checkbox from "../ElementForm/Checkbox_component";
+import '../../css/FormStyles/formBuilder.css';
 
 
 
@@ -10,6 +11,7 @@ function FormBuilder(props) {
    
    const [values, setValues] = useState({});
    const [getValidations, setGetValidations] = useState({});
+   const [isValid, setIsValid] = useState(false);
 
 
    const data = props.data; //array
@@ -17,8 +19,32 @@ function FormBuilder(props) {
 
 
    useEffect(()=> {
+      console.log(isValid);
+   }, [isValid]);
+
+   useEffect(()=> {
       console.log(getValidations);
-   }, [getValidations]);
+      const keys = Object.keys(values);  
+
+      let amountOfArea = keys?.filter(key => {
+         let objFalse = getValidations[key]?.find(rule => 
+            rule.valid 
+         ) 
+         console.log(objFalse);
+
+         return !(objFalse === undefined);
+      });
+
+      console.log(amountOfArea, amountOfArea.length);
+      console.log(keys.length, keys);
+
+      if ((amountOfArea.length+2) === keys.length && amountOfArea.length !== 0) { //wrong!!!
+         setIsValid(true);
+      } else {
+         setIsValid(false);
+      }
+       
+   }, [getValidations,values]);
 
 
    useEffect(() =>{
@@ -26,7 +52,10 @@ function FormBuilder(props) {
       console.log(Object.keys(values));
       const keys = Object.keys(values); //array
       setGetValidations(validate(values,keys,validRules));
-      props.updateData(values);
+      // props.updateData(values); //should be not work when unvalid
+      if (isValid) {
+         props.updateData(values);
+      }
    },[values]);
 
 
@@ -54,7 +83,6 @@ function FormBuilder(props) {
       );
 
 
-
       const objectField = {
                select: Select,
                checkbox: Checkbox,
@@ -68,14 +96,15 @@ function FormBuilder(props) {
          validRules = Object.assign(validRules, {[area.name]:area.validations.onChange});
       }
 
-      return (<div>
-         <label>
-            <br />
-            <span className="label__name_of_input">Your {area.name}</span></label>
-         <p className="message_of_error">{errorRule?.error ? errorRule?.error : ""}</p>
+      return (<div className="inputArea">
+         <label className="inputArea__label" for={area.name}>
+            Your {area.name}
+         </label>
+         <p className="inputArea__error">{errorRule?.error ? errorRule?.error : ""}</p>
          <Component key={area.name}
             {...area}
             onChange={handleChanges}
+            className={"inputArea__"+ area.type}
          />
       </div>
       )

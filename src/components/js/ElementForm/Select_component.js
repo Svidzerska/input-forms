@@ -15,13 +15,13 @@ function Select(props) {
    });
 
    return (
-      <div>
+      <div className={className}>
          <select name={name}
             type={type}
             hideInput={hideInput}
             required={required}
             placeholder={placeholder}
-            className={className}
+            className={className + "__select_element"}
             options={options}
             onChange={onChange}>
                {listOptions}

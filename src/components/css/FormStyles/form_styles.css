@@ -1,0 +1,20 @@
+.formAll {
+   border: 3px solid rgb(59, 9, 93);
+   width: fit-content;
+   margin-left: auto;
+   margin-right: auto;
+   box-shadow: 4px 4px 6px 1px rgba(128, 128, 128, 0.404);
+   background-color: white;
+   padding: 20px;
+}
+
+.formAll input[type="submit"] {
+   width: 200px;
+   border: 2px solid rgb(112, 17, 149);
+   border-radius: 25px;
+}
+
+.valid_submit {
+   background-image: linear-gradient(50deg, blue, pink);
+   cursor: pointer;
+}

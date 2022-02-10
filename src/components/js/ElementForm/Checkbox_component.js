@@ -11,14 +11,14 @@ function Checkbox(props) {
    } = props;
 
    return (
-      <div>
+      <div className={className}>
          <input type={type}
             id={id}
             name={name}
             value={value}
             hideInput={hideInput}
             required={required}
-            className={className}
+            className={className + "__input"}
             onChange={onChange} />
          <label for={id}>{value}</label>
          <br />

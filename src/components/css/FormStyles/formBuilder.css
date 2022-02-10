@@ -1,0 +1,54 @@
+.inputArea {
+   margin: 0;
+   padding: 0;
+   margin-top: 15px;
+}
+
+.inputArea__label {
+   font-size: 16px;
+   font-weight: 700;
+}
+
+.inputArea__error {
+   color: red;
+   height: fit-content;
+   margin: 0;
+   font-style: italic;
+}
+
+.inputArea__text {
+   border: 2px solid rgb(214, 164, 255);
+}
+
+.inputArea__password {
+   border: 2px solid rgb(202, 138, 255);
+}
+
+.inputArea__checkbox {
+   width: 300px;
+   height: 30px;
+   margin: 10px;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+.inputArea__checkbox__input {
+   width: 20px;
+   height: 20px;
+   background-color: initial;
+   cursor: default;
+   appearance: auto;
+   box-sizing: border-box;
+   margin: 3px 3px 0px 4px;
+   padding: initial;
+   border: initial;
+}
+
+.inputArea__select__select_element {
+   width: 300px;
+   height: 30px;
+   margin: 10px;
+   box-sizing: border-box;
+   border: 2px solid rgb(214, 164, 255);
+}

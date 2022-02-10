@@ -29,7 +29,6 @@ const Api = {
       });
    },
 
-
    signup: (user) => {
       return wait(3000).then(() => {
          let usersArr = JSON.parse(localStorage.getItem("Users"));
