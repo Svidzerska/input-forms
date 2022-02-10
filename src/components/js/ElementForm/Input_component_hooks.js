@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../css/input_component.css';
+import '../../css/input_component.css';
 
 
 function InputHooks(props) {

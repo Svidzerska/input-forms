@@ -1,5 +1,5 @@
 import React from "react";
-import InputClass from "./Input_component_class";
+import InputClass from "./ElementForm/Input_component_class";
 import '../css/login_component.css';
 import Api from "../control/api";
 

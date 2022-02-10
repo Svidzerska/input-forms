@@ -15,6 +15,15 @@ const propsField = [
    },
 
    {
+      name: 'checkbox',
+      type: 'checkbox',
+      required: true,
+      placeholder: '',
+      value: "Are you skier?",
+      id: 'skier',
+    },
+
+   {
       name: 'email',
       type: 'text',
       required: true,

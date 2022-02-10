@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import '../css/login_component.css';
-import InputHooks from "./Input_component_hooks";
+import InputHooks from "./ElementForm/Input_component_hooks";
 
 import Api from "../control/api";
 

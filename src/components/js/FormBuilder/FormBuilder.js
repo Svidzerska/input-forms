@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import InputHooks from "../Input_component_hooks";
-import Select from "../Select_component";
+import InputHooks from "../ElementForm/Input_component_hooks";
+import Select from "../ElementForm/Select_component";
 import validate from './validateHelper';
+import Checkbox from "../ElementForm/Checkbox_component";
 
 
 
@@ -51,7 +52,7 @@ function FormBuilder(props) {
 
       const objectField = {
                select: Select,
-               // checkbox: Checkbox,
+               checkbox: Checkbox,
                text: InputHooks,
                password: InputHooks
       }
