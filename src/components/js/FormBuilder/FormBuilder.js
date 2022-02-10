@@ -26,17 +26,22 @@ function FormBuilder(props) {
       console.log(Object.keys(values));
       const keys = Object.keys(values); //array
       setGetValidations(validate(values,keys,validRules));
-
+      props.updateData(values);
    },[values]);
 
 
    
    const handleChanges = (event) => {
+      const check = event.target.checked;
       const name = event.target.name;
       const value = event.target.value;
-      setValues({...values,[name]:value});
-   }
 
+     name === 'checkbox' ?
+      setValues({...values,[name]:check}) :
+       setValues({...values,[name]:value});
+
+
+   }
    // const error = getValidations[area.name];
    // console.log(error);
 
@@ -63,15 +68,16 @@ function FormBuilder(props) {
          validRules = Object.assign(validRules, {[area.name]:area.validations.onChange});
       }
 
-      return (<label>
-         <br/>
-         <span className="label__name_of_input">Your {area.name}</span>
-         <p className="message_of_error">{errorRule?.error ? errorRule?.error : ""}</p> 
+      return (<div>
+         <label>
+            <br />
+            <span className="label__name_of_input">Your {area.name}</span></label>
+         <p className="message_of_error">{errorRule?.error ? errorRule?.error : ""}</p>
          <Component key={area.name}
             {...area}
             onChange={handleChanges}
          />
-      </label>
+      </div>
       )
    });
 

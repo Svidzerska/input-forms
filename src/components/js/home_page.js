@@ -1,9 +1,9 @@
 import '../css/home_page.css';
-import FormBuilder from './FormBuilder/FormBuilder';
-import propsField from "../control/props_field.js";
+import Form from './FormBuilder/Form_component';
 
 
 function HomePage(props) {
+
    return (
       <div>
          <div className="information_card">
@@ -26,7 +26,8 @@ function HomePage(props) {
                Canada, Croatia, Czech Republic, Finland, France, Germany, Italy, Japan, New Zealand, Norway, Poland, Russia, Slovakia, Slovenia, South Korea, Spain, Sweden, Switzerland, and the United States. 
                Lower competitive circuits include the NorAm Cup in North America and the Europa Cup in Europe.</p>
          </div>
-         <FormBuilder data={propsField}/>
+
+         <Form />
       </div>
    )
 }

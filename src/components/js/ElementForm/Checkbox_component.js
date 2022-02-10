@@ -6,7 +6,8 @@ function Checkbox(props) {
       required,
       className, 
       value,
-      id
+      id,
+      onChange
    } = props;
 
    return (
@@ -17,7 +18,8 @@ function Checkbox(props) {
             value={value}
             hideInput={hideInput}
             required={required}
-            className={className} />
+            className={className}
+            onChange={onChange} />
          <label for={id}>{value}</label>
          <br />
       </div>

@@ -17,10 +17,9 @@ const propsField = [
    {
       name: 'checkbox',
       type: 'checkbox',
-      required: true,
       placeholder: '',
       value: "Are you skier?",
-      id: 'skier',
+      id: 'skier'
     },
 
    {

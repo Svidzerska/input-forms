@@ -1,5 +1,35 @@
 
 const Api = {
+   sendForm: (user) => {
+      return wait(3000).then(() => {
+         let formData = JSON.parse(localStorage.getItem("Skiers"));
+         console.log(formData);
+
+         if (formData) {
+            let result = formData.find(element =>
+               user.email === element.email &&
+               user.newPassword === element.newPassword
+            );
+
+            if (!result) {
+               formData.push(user);
+               let users = JSON.stringify(formData);
+               localStorage.setItem("Skiers", users);
+               return formData;
+            } else if (result) {
+               return "the user already exists";
+            }
+
+         } else {
+            formData = [user];
+            let users = JSON.stringify(formData);
+            localStorage.setItem("Skiers", users);
+            return formData;
+         }
+      });
+   },
+
+
    signup: (user) => {
       return wait(3000).then(() => {
          let usersArr = JSON.parse(localStorage.getItem("Users"));

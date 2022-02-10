@@ -6,7 +6,8 @@ function Select(props) {
       required,
       placeholder,
       className,
-      options
+      options,
+      onChange
    } = props;
 
    const listOptions = options.map(function(option) {
@@ -21,7 +22,8 @@ function Select(props) {
             required={required}
             placeholder={placeholder}
             className={className}
-            options={options}>
+            options={options}
+            onChange={onChange}>
                {listOptions}
          </select>
          <br/>
