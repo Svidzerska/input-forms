@@ -41,6 +41,14 @@ function FormBuilder(props) {
 
 
    const listArea = data.map(function(area) {
+
+      let rulesResolved = getValidations[area.name]; //array
+      let errorRule = rulesResolved?.find(objRule => 
+         !objRule.valid
+      );
+
+
+
       const objectField = {
                select: Select,
                // checkbox: Checkbox,
@@ -55,9 +63,9 @@ function FormBuilder(props) {
       }
 
       return (<label>
-         <span className="label__name_of_input">Your name</span>
-         <p className="message_of_error">{getValidations[area.name] && getValidations.method !== undefined ?
-          getValidations[area.name][getValidations.method].error : ""}</p>
+         <br/>
+         <span className="label__name_of_input">Your {area.name}</span>
+         <p className="message_of_error">{errorRule?.error ? errorRule?.error : ""}</p> 
          <Component key={area.name}
             {...area}
             onChange={handleChanges}

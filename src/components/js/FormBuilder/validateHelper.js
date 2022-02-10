@@ -1,50 +1,34 @@
 import validation from "../../control/validation";
 
-
-
-const validate = (values,keys,validRules) => {
+const validate = (values, keys, validRules) => {
    let resObj = {};
 
-   for (let i = 0; i < keys.length; i++) {
-      let arrayRules = validRules[keys[i]];
+   keys.forEach(area => {
+      let arrayRules = validRules[area]; // array
 
       if (arrayRules) {
-         let current_method = {};
+         let arrayResolveRules = [];
 
-         for (let j = 0; j < arrayRules.length; j++) {
-            let method = arrayRules[j].name;
+         arrayRules.forEach(rule => {
+            let method = rule.name;
+
+            const changeObj = (parameter) => {
+               arrayResolveRules.push(validation[method](values[area], parameter)); // push arr
+               resObj = Object.assign(
+                  resObj, { [area]: arrayResolveRules },
+               )
+            };
 
             if (method === 'confirmPass') {
                let parameter = values['newPassword'];
-               resObj = Object.assign(
-                  resObj,
-                  { [keys[i]]: Object.assign(current_method, { [method]: validation[method](values[keys[i]], parameter) },
-                  ) }
-               );
-               if (resObj[keys[i]]) {
-                  console.log(resObj.method);
-                  resObj = Object.assign(
-                  resObj, {"method": !resObj[keys[i]][method].valid ? method : resObj.method}
-               );
-               }
+               changeObj(parameter);
             } else {
-               let parameter = arrayRules[j][method];
-               resObj = Object.assign(
-                  resObj, { [keys[i]]: Object.assign(current_method, { [method]: validation[method](values[keys[i]], parameter) },
-                  ) }
-                  );
-
-               if (resObj[keys[i]]) {
-                  console.log(resObj.method);
-                  resObj = Object.assign(
-                  resObj, {"method": !resObj[keys[i]][method].valid ? method : resObj.method}
-               );
-               }
+               let parameter = rule[method];
+               changeObj(parameter);
             }
-         }
+         });
       }
-   }
-
+   });
    return (resObj);
 }
 
