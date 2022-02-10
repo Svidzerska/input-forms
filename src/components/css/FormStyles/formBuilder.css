@@ -20,6 +20,10 @@
    border: 2px solid rgb(214, 164, 255);
 }
 
+.inputArea__text:valid {
+   border: 2px solid rgb(164, 255, 164);
+}
+
 .inputArea__password {
    border: 2px solid rgb(202, 138, 255);
 }

@@ -11,13 +11,15 @@ function Form(props) {
    // const [isSubmit, setIsSubmit] = useState(false);
    const [isValid, setIsValid] = useState(false);
 
+   // useEffect(() => {
+   //    console.log(valuesResult);
+   // }, [valuesResult]);
+
    useEffect(()=>{
       console.log(isValid);
    }, [isValid]);
 
    const updateData = (values,isValidState) => {
-      console.log(111111111);
-      console.log(isValidState);
       setValuesResult(values); 
       setIsValid(isValidState);
    }
@@ -33,7 +35,7 @@ function Form(props) {
    return (
          <form onSubmit={handleSubmit} className="formAll">
             <FormBuilder data={propsField} updateData={updateData}/>
-            <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
+            <input type="submit" value="Submit"  className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
    )
 }
