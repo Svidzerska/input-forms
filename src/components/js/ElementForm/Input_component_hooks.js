@@ -3,6 +3,7 @@ import '../../css/input_component.css';
 
 
 function InputHooks(props) {
+
    const [_value, setValue] = useState("");
 
    const {
@@ -17,16 +18,21 @@ function InputHooks(props) {
    } = props;
 
    useEffect(() => {
+      console.log(22222222);
       setValue(value);
    }, [value]);
+
+   useEffect(()=> {
+      console.log(value);
+      console.log(_value);
+   }, [_value]);
 
 
    function onChangeHandler(e) {
       onChange(e);
-      setValue(e.target.value);
+      setValue(e.target.value); //_value
    }
 
-   console.log(value, _value);
    return (
       <input name={name}
          type={type}

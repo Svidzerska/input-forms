@@ -30,6 +30,10 @@ function FormBuilder(props) {
 
 
    useEffect(() => {
+      console.log(props.value);
+   }, [props.value]);
+
+   useEffect(() => {
       props.updateData(values,isValid);
    }, [values, isValid]);
 
@@ -55,7 +59,6 @@ function FormBuilder(props) {
    const listArea = data.map(function(area) {
 
       let rulesResolved = getValidations[area.name]; // array
-      console.log(rulesResolved);
 
       let errorRule = rulesResolved?.find(objRule => 
          !objRule.valid
@@ -64,8 +67,6 @@ function FormBuilder(props) {
       let trueRule = rulesResolved?.find(objRule => 
          objRule.valid
       );
-
-      console.log(trueRule);
 
       const objectField = {
                select: Select,
@@ -92,7 +93,7 @@ function FormBuilder(props) {
             {...area}
             onChange={handleChanges}
             className={"inputArea__"+ area.type}
-            value={props.value}
+            value={area.type === "checkbox" ? area.value : props.value}
          />
       </div>
       )

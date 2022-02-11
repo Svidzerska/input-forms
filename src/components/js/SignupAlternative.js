@@ -32,15 +32,25 @@ function SignupAlternative(props) {
 
    const handleClear = (event) => {
       event.preventDefault();
-      set__Values({...__values, value: ""})
+      set__Values({...__values, value: ""});
+      setIsResult({...isResult, error: '', current_user: ''});
+      setIsProgress(false);
+      setIsValid(false);
    }
+
+   useEffect(()=> {
+      console.log(valuesResult);
+      if (__values.value === "") {
+         set__Values(initValue);
+      }
+   }, [__values]);
 
 
    const updateData = (values,isValidState) => {
       setValuesResult(values); 
       setIsValid(isValidState);
       setIsProgress(false);
-      set__Values(initValue);
+      // set__Values(initValue);
    }
 
    const handleSubmit = (event) => {
