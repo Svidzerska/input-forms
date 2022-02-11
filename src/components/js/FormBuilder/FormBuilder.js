@@ -33,11 +33,11 @@ function FormBuilder(props) {
       props.updateData(values,isValid);
    }, [values, isValid]);
 
+
    useEffect(() =>{
       const keys = Object.keys(values); //array
       setGetValidations(validate(values,keys,validRules));
    },[values]);
-
 
    
    const handleChanges = (event) => {
@@ -45,7 +45,7 @@ function FormBuilder(props) {
       const name = event.target.name;
       const value = event.target.value;
 
-     name === 'checkbox' ?
+      name === 'checkbox' ?
       setValues({...values,[name]:check}) :
        setValues({...values,[name]:value});
    }

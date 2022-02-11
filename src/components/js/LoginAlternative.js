@@ -1,23 +1,18 @@
 import React, {useState, useEffect} from "react";
 import '../css/signup_component_hooks.css';
 import Api from "../control/api";
-import propsSignUp from "../control/props_signup";
+import propsLogin from "../control/props_login";
 import FormBuilder from "./FormBuilder/FormBuilder";
 
 
 
-function SignupAlternative(props) {
+function LoginAlternative(props) {
 
    const initialResult = {
       error:"",
       current_user:""
    }
 
-   const initValue = {
-      value: undefined,
-   } 
-
-   const [__values, set__Values] = useState(initValue);
 
    const [valuesResult, setValuesResult] = useState({});
    const [isValid, setIsValid] = useState(false);
@@ -30,49 +25,56 @@ function SignupAlternative(props) {
       console.log(isValid);
    }, [isValid]);
 
-   const handleClear = (event) => {
-      event.preventDefault();
-      set__Values({...__values, value: ""})
-   }
-
 
    const updateData = (values,isValidState) => {
       setValuesResult(values); 
       setIsValid(isValidState);
       setIsProgress(false);
-      set__Values(initValue);
    }
 
    const handleSubmit = (event) => {
       event.preventDefault();
       console.log(valuesResult);
       if (isValid) {
-         Api.signup(valuesResult).then((result) => {
-               
-            setIsResult({...isResult,
-            error: typeof result === "string" ? result : '',
-            current_user: typeof result !== "string" ? result[result.length -1] : ""});
+         Api.login(valuesResult).then((result) =>  {
+            setIsResult({...isResult, information:result.information, current_user:result.current_user});
          });
       }
       setIsProgress(true);
    }
 
+   useEffect(() => {
+      if (isResult.information === "log-in is successed") {
+         isAuth();
+         if(isResult.current_user !== "") {
+            currentUser();
+         }
+      }
+
+   },[isResult, isAuth, currentUser]);
+
+   function isAuth() {
+      props.updateData(valuesResult);
+   }
+
+   function currentUser() {
+      props.updateUser(isResult.current_user);
+   }
+
    return (
       <div className="form_valid">
          <form onSubmit={handleSubmit}>
-            <FormBuilder data={propsSignUp} updateData={updateData} value={__values.value}/>
+            <FormBuilder data={propsLogin} updateData={updateData}/>
             <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
 
-         <p className={isResult.error !== "" ? "signup_res_err" : "signup_res_user"}>
-            {isResult.error !== "" ? isResult.error :
-            (isResult.current_user !== '' ? "you are successfully signed up as " + isResult.current_user.name : '')}
+         <p className="login_information">
+            {isResult.information}
          </p>
          <div className={(isProgress && isValid) ? "animate_progress": "stop"}><p></p></div>
-         <button className="button_clear" onClick={handleClear}>Clear form</button>
       </div>
    )
 }
 
-export default SignupAlternative;
+export default LoginAlternative;
 

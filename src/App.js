@@ -18,6 +18,7 @@ import Header from "./components/js/Header";
 import PrivateRoute from "./components/js/private_route";
 import Dashboard from "./components/js/Dashboard";
 import SignupAlternative from "./components/js/SignupAlternative";
+import LoginAlternative from "./components/js/LoginAlternative";
 
 
 function App() {
@@ -41,7 +42,9 @@ function App() {
             <Header/>
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
-               <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} />
+               {/* <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} /> */}
+               <Route path="/login" element={<LoginAlternative updateData={updateData} updateUser={updateUser}/>} />
+
                {/* <Route path="/signup" element={<SignupHooks />} /> */}
                <Route path="/signup" element={<SignupAlternative />} />
                <Route path="/" element={<HomePage />} />

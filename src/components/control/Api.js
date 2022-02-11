@@ -68,8 +68,10 @@ const Api = {
          if (usersArr) {
             let result = usersArr.find(element =>
                user.login === element.name &&
-               user.password === element.password
-            );
+               user.password === element.newPassword
+            ); // if true - element
+
+            console.log(result); 
 
             if (!result) {
                return ({
