@@ -17,6 +17,7 @@ import BackgroundChange from "./components/control/background_color";
 import Header from "./components/js/Header";
 import PrivateRoute from "./components/js/private_route";
 import Dashboard from "./components/js/Dashboard";
+import SignupAlternative from "./components/js/SignupAlternative";
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
                <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} />
-               <Route path="/signup" element={<SignupHooks />} />
+               {/* <Route path="/signup" element={<SignupHooks />} /> */}
+               <Route path="/signup" element={<SignupAlternative />} />
                <Route path="/" element={<HomePage />} />
                <Route path="/dashboard" element={<PrivateRoute authed={isAuth} component={Dashboard}/>} />
             </Routes>

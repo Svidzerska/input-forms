@@ -15,6 +15,7 @@ function FormBuilder(props) {
 
 
    const data = props.data; //array
+
    let validRules = {};
 
 
@@ -35,7 +36,6 @@ function FormBuilder(props) {
    useEffect(() =>{
       const keys = Object.keys(values); //array
       setGetValidations(validate(values,keys,validRules));
-      
    },[values]);
 
 
@@ -48,8 +48,6 @@ function FormBuilder(props) {
      name === 'checkbox' ?
       setValues({...values,[name]:check}) :
        setValues({...values,[name]:value});
-
-
    }
 
    let checkValid = [];
@@ -94,6 +92,7 @@ function FormBuilder(props) {
             {...area}
             onChange={handleChanges}
             className={"inputArea__"+ area.type}
+            value={props.value}
          />
       </div>
       )
