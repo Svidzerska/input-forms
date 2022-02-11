@@ -61,6 +61,6 @@
    border: 2px solid rgb(214, 164, 255);
 }
 
-.animate_progress, .stop {
+.formAll .animate_progress, .formAll .stop {
    margin: 10px;
 }
