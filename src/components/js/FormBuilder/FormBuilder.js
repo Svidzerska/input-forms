@@ -22,29 +22,11 @@ function FormBuilder(props) {
       console.log(isValid);
    }, [isValid]);
 
+
    useEffect(()=> {
-      console.log(getValidations);
-      const keys = Object.keys(values);  
-
-      keys?.map(key => {
-         let objFalse = getValidations[key];
-
-         let b = objFalse?.filter(result => 
-            result.valid
-         )
-
-         console.log(objFalse);
-         console.log(b);
-
-         if (objFalse?.length === b?.length && objFalse && b) {
-            setIsValid(true);
-         } else {
-            setIsValid(false);
-         }
-
-         return objFalse;
-      })       
+         checkValid.includes(undefined) ? setIsValid(false) : setIsValid(true);
    }, [getValidations,values]);
+
 
    useEffect(() => {
       props.updateData(values,isValid);
@@ -69,17 +51,23 @@ function FormBuilder(props) {
 
 
    }
-   // const error = getValidations[area.name];
-   // console.log(error);
 
+   let checkValid = [];
 
    const listArea = data.map(function(area) {
 
-      let rulesResolved = getValidations[area.name]; //array
+      let rulesResolved = getValidations[area.name]; // array
+      console.log(rulesResolved);
+
       let errorRule = rulesResolved?.find(objRule => 
          !objRule.valid
       );
 
+      let trueRule = rulesResolved?.find(objRule => 
+         objRule.valid
+      );
+
+      console.log(trueRule);
 
       const objectField = {
                select: Select,
@@ -88,6 +76,10 @@ function FormBuilder(props) {
                password: InputHooks
       }
       const Component = objectField[area.type];
+
+      if (Component === InputHooks) {
+         checkValid.push(trueRule);
+      }
 
       if (area.validations) {
          validRules = Object.assign(validRules, {[area.name]:area.validations.onChange});
