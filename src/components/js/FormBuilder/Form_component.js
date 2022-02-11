@@ -8,12 +8,9 @@ import Api from '../../control/api';
 function Form(props) {
 
    const [valuesResult, setValuesResult] = useState({});
-   // const [isSubmit, setIsSubmit] = useState(false);
    const [isValid, setIsValid] = useState(false);
+   const [isProgress, setIsProgress] = useState(false);
 
-   // useEffect(() => {
-   //    console.log(valuesResult);
-   // }, [valuesResult]);
 
    useEffect(()=>{
       console.log(isValid);
@@ -22,6 +19,7 @@ function Form(props) {
    const updateData = (values,isValidState) => {
       setValuesResult(values); 
       setIsValid(isValidState);
+      setIsProgress(false);
    }
 
    const handleSubmit = (event) => {
@@ -30,12 +28,14 @@ function Form(props) {
       if (isValid) {
          Api.sendForm(valuesResult);
       }
+      setIsProgress(true);
    }
 
    return (
          <form onSubmit={handleSubmit} className="formAll">
             <FormBuilder data={propsField} updateData={updateData}/>
             <input type="submit" value="Submit"  className={isValid ? "valid_submit" : "unvalid"}/> 
+            <div className={(isValid && isProgress) ? "animate_progress": "stop"}><p></p></div>
          </form>
    )
 }

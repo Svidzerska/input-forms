@@ -28,6 +28,10 @@
    border: 2px solid rgb(202, 138, 255);
 }
 
+.inputArea__password:valid {
+   border: 2px solid rgb(63, 255, 63);
+}
+
 .inputArea__checkbox {
    width: 300px;
    height: 30px;
@@ -55,4 +59,8 @@
    margin: 10px;
    box-sizing: border-box;
    border: 2px solid rgb(214, 164, 255);
+}
+
+.animate_progress, .stop {
+   margin: 10px;
 }
