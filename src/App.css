@@ -9,6 +9,18 @@
    flex-direction: row;
 }
 
+.navigation_tools > .navigation_tools__currentUser {
+   border-radius: 0;
+   border: 3px solid rgb(184, 77, 255);
+   box-sizing: border-box;
+   color: rgba(137, 43, 226, 0.493);
+}
+
+.navigation_tools > .navigation_tools__no_currentUser {
+   display: none;
+}
+
+
 .navigation_tools > p, .home {
    margin: 20px;
    font-size: 16px;
@@ -22,6 +34,7 @@
 .navigation_tools > p {
    background-color: white;
 }
+
 
 a {
    color: rgb(27, 0, 53);
@@ -96,4 +109,18 @@ div.blue, div.yellow, div.orange, div.green {
    animation-timing-function: linear;
    animation-direction: alternate;
    animation-fill-mode: forwards;
+}
+
+
+@media screen and (max-width:750px) {
+   .header {
+      justify-content: space-evenly;
+  }
+   .navigation_tools {
+      flex-direction: column;
+   }
+
+   .navigation_tools > p, .home {
+      margin: 7px;
+   }
 }

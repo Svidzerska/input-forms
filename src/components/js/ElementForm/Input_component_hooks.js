@@ -18,14 +18,13 @@ function InputHooks(props) {
    } = props;
 
    useEffect(() => {
-      console.log(22222222);
       setValue(value);
    }, [value]);
 
-   useEffect(()=> {
-      console.log(value);
-      console.log(_value);
-   }, [_value]);
+   // useEffect(()=> {
+   //    console.log(value);
+   //    console.log(_value);
+   // }, [_value]);
 
 
    function onChangeHandler(e) {

@@ -19,7 +19,7 @@ const propsLogin = [
      type: 'password',
      hideInput: true,
      required: true,
-     placeholder: 'New password',
+     placeholder: 'Password',
      validations: {
        onChange: [
          {

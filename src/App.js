@@ -19,6 +19,7 @@ import PrivateRoute from "./components/js/private_route";
 import Dashboard from "./components/js/Dashboard";
 import SignupAlternative from "./components/js/SignupAlternative";
 import LoginAlternative from "./components/js/LoginAlternative";
+import ToDoList from "./components/js/ToDoList/ToDoList";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
    return (
       <Router>
          <div className={background}>
-            <Header/>
+            <Header currentUser={currentUser}/>
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
                {/* <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} /> */}
@@ -49,6 +50,7 @@ function App() {
                <Route path="/signup" element={<SignupAlternative />} />
                <Route path="/" element={<HomePage />} />
                <Route path="/dashboard" element={<PrivateRoute authed={isAuth} component={Dashboard}/>} />
+               <Route path="/todolist" element={<PrivateRoute authed={isAuth} component={ToDoList} authedName={currentUser}/>} />
             </Routes>
          </div>
       </Router>

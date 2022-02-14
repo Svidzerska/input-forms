@@ -1,0 +1,18 @@
+.todoPage {
+   margin-top: 20px;
+   margin-left: auto;
+   margin-right: auto;
+   border: 3px solid rgb(102, 0, 133);
+   background-color: white;
+   width: 400px;
+}
+
+.todoPage__input {
+   width: 300px;
+   height: 30px;
+   margin: 10px;
+   box-sizing: border-box;
+   border: 1px solid rgb(214, 164, 255);
+   border-radius: 10px;
+}
+
