@@ -1,7 +1,7 @@
 function Button(props) {
 
    return (
-      <button onClick={props.onClick} item_number={props.item_number}>{props.text}</button>
+      <button onClick={props.onClick} index_item={props.index_item}>{props.text}</button>
    )
 }
 

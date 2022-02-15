@@ -29,3 +29,9 @@
    margin-right: 5px;
 }
 
+.todoPage_inputEdit {
+   width: 150px;
+   box-sizing: border-box;
+   border: 1px solid rgb(214, 164, 255);
+}
+
