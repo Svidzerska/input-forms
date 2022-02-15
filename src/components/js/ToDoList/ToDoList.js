@@ -3,9 +3,6 @@ import InputHooks from "../ElementForm/Input_component_hooks";
 import "../../css/ToDoListStyles/todoPage.css";
 import Button from "../ElementForm/Button";
 
-let valuesArray = [];
-
-
 
 function ToDoList(props) {
    // console.log(props);
@@ -14,22 +11,18 @@ function ToDoList(props) {
    // const dataFromStorage = JSON.parse(getObj);
    
 
-
-   const initValuesArray = [];
-
-   const [values, setValues] = useState("");
+   const [currentValue, setCurrentValue] = useState("");
    const [valuesEdit, setValuesEdit] = useState({});
 
-   const [list, setList] = useState(initValuesArray);
-   const [number, setNumber] = useState(0); //questions
+   const [list, setList] = useState([]);
 
    const [indexEdit, setIndexEdit] = useState("");
 
-   
 
    const handleChange = (e) => {
       e.preventDefault();
-      setValues(e.target.value);
+      setCurrentValue(e.target.value);
+
       setIndexEdit("");
    }
 
@@ -40,27 +33,18 @@ function ToDoList(props) {
    }
 
    const handleClickAdd = () => {
-      if (values !== "") {
-         valuesArray.push(values);
+      if (currentValue !== "") {
+         setList([...list, currentValue]);
       } 
       
-      console.log(valuesArray);
-      setList(valuesArray);
-      console.log(list);
-
-      setNumber(valuesArray.length);  //question
-
-      setValues("");
+      setCurrentValue("");
       setIndexEdit("");
    }
 
 
    const handleRemoveClick = (event) => {
-      const index = event.target.attributes.index_item.value;
-      valuesArray.splice(+index, 1);
-
-      setList(valuesArray);
-      setNumber(valuesArray.length); //question
+      const indexCurrent = event.target.attributes.index_item.value;
+      setList(list.filter((item, index) => +indexCurrent !== index));
    }
 
    
@@ -68,15 +52,14 @@ function ToDoList(props) {
    const handleEditClick = (e) => {
       const index = e.target.attributes.index_item.value;
       setIndexEdit(+index);
+
    }
 
    const handleDoneClick = (e) => {
-      valuesArray.splice(+valuesEdit.index, 1, valuesEdit.value);
-
-      setList(valuesArray);
-      setNumber(valuesArray.length); //question
-
       setIndexEdit("");
+
+      setList(list.map((element,index) => index === +valuesEdit.index ?
+      valuesEdit.value : element ));
    };
 
 
@@ -92,8 +75,6 @@ function ToDoList(props) {
    // localStorage.setItem(props.authedName.name,objToJson);
 
    const todo_list = list.map(function(element,index) {
-      
-
       return (<div key={element} className="todoPage__list_item">
          <p>{index + 1}. {index !== indexEdit ?
           element :
@@ -115,7 +96,7 @@ function ToDoList(props) {
 
    return (
       <div className="todoPage">
-         <InputHooks onChange={handleChange} value={values} className="todoPage__input" placeholder="Type your task..."/>
+         <InputHooks onChange={handleChange} value={currentValue} className="todoPage__input" placeholder="Type your task..."/>
          <Button text="ADD" onClick={handleClickAdd}/>
          {todo_list}
       </div>
