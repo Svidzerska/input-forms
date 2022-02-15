@@ -15,6 +15,16 @@ function ToDoList(props) {
    const [currentValue, setCurrentValue] = useState("");
    const [list, setList] = useState([]);
 
+   useEffect(() => {
+      const getObj = localStorage.getItem(props.authedName.name);
+      if (getObj) {
+         const dataFromStorage = JSON.parse(getObj);
+         console.log(dataFromStorage);
+         setList(dataFromStorage);
+      }
+
+   }, [props.authedName.name]);
+
 
    const handleChange = (e) => {
       e.preventDefault();
@@ -29,15 +39,19 @@ function ToDoList(props) {
       setCurrentValue("");
       // setIndexEdit("");
    } 
+
+   // useEffect(() => {
+   //    console.log(list);
+   //    const objToJson = JSON.stringify(list);
+   //    localStorage.setItem(props.authedName.name,objToJson);
+   // }, [list]);
    
-   // const objToJson = JSON.stringify(list);
-   // localStorage.setItem(props.authedName.name,objToJson);
 
    return (
       <div className="todoPage">
          <InputHooks onChange={handleChange} value={currentValue} className="todoPage__input" placeholder="Type your task..."/>
          <Button text="ADD" onClick={handleClickAdd}/>
-         <ToDoListItemControl list={list}/>
+         <ToDoListItemControl list={list} authedName={props.authedName}/>
       </div>
    )
 }

@@ -36,9 +36,12 @@ function ToDoListItemControl(props) {
       valuesEdit.value : element ));
    };
 
+    
    useEffect(() => {
       console.log(list);
-   }, [list]);   
+      const objToJson = JSON.stringify(list);
+      localStorage.setItem(props.authedName.name,objToJson);
+   }, [list]);
 
    const todo_list = list.map(function(element,index) {
 
