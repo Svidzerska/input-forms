@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import InputHooks from "../ElementForm/Input_component_hooks";
 import "../../css/ToDoListStyles/todoPage.css";
 import Button from "../ElementForm/Button";
+import ToDoListItem from "./ToDoListItem";
 
 
 function ToDoList(props) {
@@ -42,8 +43,8 @@ function ToDoList(props) {
    }
 
 
-   const handleRemoveClick = (event) => {
-      const indexCurrent = event.target.attributes.index_item.value;
+   const handleRemoveClick = (e) => {
+      const indexCurrent = e.target.attributes.index_item.value;
       setList(list.filter((item, index) => +indexCurrent !== index));
    }
 
@@ -52,7 +53,6 @@ function ToDoList(props) {
    const handleEditClick = (e) => {
       const index = e.target.attributes.index_item.value;
       setIndexEdit(+index);
-
    }
 
    const handleDoneClick = (e) => {
@@ -75,23 +75,30 @@ function ToDoList(props) {
    // localStorage.setItem(props.authedName.name,objToJson);
 
    const todo_list = list.map(function(element,index) {
-      return (<div key={element} className="todoPage__list_item">
-         <p>{index + 1}. {index !== indexEdit ?
-          element :
-           <InputHooks value={element}
-            className="todoPage_inputEdit"
-            onChange={handleChangeEdit}
-            name={index} />}</p>
-         <div>
-            <Button text={index !== indexEdit ? "EDIT" : "DONE"}
-               onClick={index !== indexEdit ? handleEditClick : handleDoneClick}
-               index_item={index} />
-            <Button text="REMOVE"
-               onClick={handleRemoveClick}
-               index_item={index} />
-         </div>
-      </div>
-      )
+      // return (<div key={element} className="todoPage__list_item">
+      //    <p>{index + 1}. {index !== indexEdit ?
+      //     element :
+      //      <InputHooks value={element}
+      //       className="todoPage_inputEdit"
+      //       onChange={handleChangeEdit}
+      //       name={index} />}</p>
+      //    <div>
+      //       <Button text={index !== indexEdit ? "EDIT" : "DONE"}
+      //          onClick={index !== indexEdit ? handleEditClick : handleDoneClick}
+      //          index_item={index} />
+      //       <Button text="REMOVE"
+      //          onClick={handleRemoveClick}
+      //          index_item={index} />
+      //    </div>
+      // </div>
+      return <ToDoListItem element={element}
+         index={index}
+         indexEdit={indexEdit}
+         handleChangeEdit={handleChangeEdit}
+         handleEditClick={handleEditClick}
+         handleDoneClick={handleDoneClick}
+         handleRemoveClick={handleRemoveClick}
+      />
    });
 
    return (
