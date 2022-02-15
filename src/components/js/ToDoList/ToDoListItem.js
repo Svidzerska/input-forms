@@ -1,3 +1,6 @@
+import ToDoListItemButtons from "./ToDoListItemButtons";
+import ToDoListItemInformation from "./ToDoListItemInformation";
+
 function ToDoListItem(props) {
 
    const {
@@ -13,24 +16,20 @@ function ToDoListItem(props) {
 
    return (
    <div key={element} className="todoPage__list_item">
-      <p>{index + 1}. {index !== indexEdit ?
-         element :
-         <InputHooks value={element}
-            className="todoPage_inputEdit"
-            onChange={handleChangeEdit}
-            name={index} />}</p>
-      <div>
-         <Button text={index !== indexEdit ? "EDIT" : "DONE"}
-            onClick={index !== indexEdit ? handleEditClick : handleDoneClick}
-            index_item={index} />
-         <Button text="REMOVE"
-            onClick={handleRemoveClick}
-            index_item={index} />
-      </div>
+      <ToDoListItemInformation element={element}
+         index={index}
+         indexEdit={indexEdit}
+         handleChangeEdit={handleChangeEdit}
+      />
+
+      <ToDoListItemButtons 
+         index={index}
+         indexEdit={indexEdit}
+         handleEditClick={handleEditClick}
+         handleDoneClick={handleDoneClick}
+         handleRemoveClick={handleRemoveClick}
+         />
    </div>)
 };
-
-
-
 
 export default ToDoListItem;

@@ -14,9 +14,7 @@ function ToDoList(props) {
 
    const [currentValue, setCurrentValue] = useState("");
    const [valuesEdit, setValuesEdit] = useState({});
-
    const [list, setList] = useState([]);
-
    const [indexEdit, setIndexEdit] = useState("");
 
 
@@ -69,28 +67,11 @@ function ToDoList(props) {
 
    // }, [list]);
 
-   console.log(list);
 
    // const objToJson = JSON.stringify(list);
    // localStorage.setItem(props.authedName.name,objToJson);
 
    const todo_list = list.map(function(element,index) {
-      // return (<div key={element} className="todoPage__list_item">
-      //    <p>{index + 1}. {index !== indexEdit ?
-      //     element :
-      //      <InputHooks value={element}
-      //       className="todoPage_inputEdit"
-      //       onChange={handleChangeEdit}
-      //       name={index} />}</p>
-      //    <div>
-      //       <Button text={index !== indexEdit ? "EDIT" : "DONE"}
-      //          onClick={index !== indexEdit ? handleEditClick : handleDoneClick}
-      //          index_item={index} />
-      //       <Button text="REMOVE"
-      //          onClick={handleRemoveClick}
-      //          index_item={index} />
-      //    </div>
-      // </div>
       return <ToDoListItem element={element}
          index={index}
          indexEdit={indexEdit}
