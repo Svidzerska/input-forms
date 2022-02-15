@@ -9,6 +9,8 @@ function ToDoList(props) {
    console.log(props);
 
    const [values, setValues] = useState("");
+   const [list, setList] = useState(valuesArray);
+   const [number, setNumber] = useState(0);
    
    const handleChange = (e) => {
       e.preventDefault();
@@ -18,16 +20,41 @@ function ToDoList(props) {
    const handleClick = () => {
       valuesArray.push(values);
       console.log(valuesArray);
+
+      setList(valuesArray);
+      console.log(list);
+
+      setNumber(valuesArray.length);
+   }
+
+
+   const handleRemoveClick = (event) => {
+      console.log(event.target.item_number); //problem
+      valuesArray.splice(event.target.item_number, 1);
+      setList(valuesArray);
+      console.log(list);
+
+      setNumber(valuesArray.length);
    }
 
    useEffect(() => {
-      console.log(values);
-   }, [values]);
+      console.log(number);
+   }, [number]);
 
-   const todo_list = valuesArray.map(function(element,index) {
-      return <p>{index+1}. {element}</p>
+   const todo_list = list.map(function(element,index) {
+      return (<div key={element} className="todoPage__list_item">
+         <p>{index+1}. {element}</p>
+         <div>
+            <Button text ="EDIT"/>
+            <Button text ="REMOVE" onClick={handleRemoveClick} item_number={index}/>
+         </div>
+         </div>
+      )
    });
 
+   
+
+   
    // useEffect(() => {
    // }, [valuesArray]);
 
