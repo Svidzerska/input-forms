@@ -1,13 +1,20 @@
-import Button from "../ElementForm/Button";
+import { useContext } from "react";
+import React from "react";
+
+import Button from "../../../ElementForm/Button";
+
+import { IndexContext } from "../../ToDoListItemControl";
+import { IndexEditContext } from "../../ToDoListItemControl";
 
 function ToDoListItemButtons(props) {
    const {
-      index,
-      indexEdit,
       handleEditClick,
       handleDoneClick,
       handleRemoveClick,
    } = props;
+
+   const index = useContext(IndexContext);
+   const indexEdit = useContext(IndexEditContext);
 
    return (
       <div>

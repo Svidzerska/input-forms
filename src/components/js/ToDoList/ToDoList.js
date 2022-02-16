@@ -3,55 +3,42 @@ import InputHooks from "../ElementForm/Input_component_hooks";
 import "../../css/ToDoListStyles/todoPage.css";
 import Button from "../ElementForm/Button";
 import ToDoListItemControl from "./ToDoListItemControl";
+import ApiToDo from "../../control/apiToDo";
 
 
 function ToDoList(props) {
-   console.log(props);
-
-   // const getObj = localStorage.getItem(props.authedName.name);
-   // const dataFromStorage = JSON.parse(getObj);
-   
+   // console.log(props);
 
    const [currentValue, setCurrentValue] = useState("");
    const [list, setList] = useState([]);
 
    useEffect(() => {
-      const getObj = localStorage.getItem(props.currentUser.name);
-      if (getObj) {
-         const dataFromStorage = JSON.parse(getObj);
-
-         setList(dataFromStorage);
-      }
-
+      ApiToDo.getToDoList(props.currentUser.name).then(result => setList(result));
    }, [props.currentUser.name]);
 
 
    const handleChange = (e) => {
       e.preventDefault();
       setCurrentValue(e.target.value);
-      // setIndexEdit("");
    }
 
    const handleClickAdd = () => {
       if (currentValue !== "") {
-         setList([...list, currentValue]);
-      } 
+         ApiToDo.getToDoList(props.currentUser.name).then(result => {
+            setList([...result, currentValue]);
+         });
+      }    
       setCurrentValue("");
-      // setIndexEdit("");
    } 
-
-   // useEffect(() => {
-   //    console.log(list);
-   //    const objToJson = JSON.stringify(list);
-   //    localStorage.setItem(props.authedName.name,objToJson);
-   // }, [list]);
-   
 
    return (
       <div className="todoPage">
-         <InputHooks onChange={handleChange} value={currentValue} className="todoPage__input" placeholder="Type your task..."/>
-         <Button text="ADD" onClick={handleClickAdd}/>
-         <ToDoListItemControl list={list} currentUser={props.currentUser}/>
+         <InputHooks onChange={handleChange}
+            value={currentValue}
+            className="todoPage__input"
+            placeholder="Type your task..." />
+         <Button text="ADD" onClick={handleClickAdd} />
+         <ToDoListItemControl list={list} currentUser={props.currentUser} />
       </div>
    )
 }

@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import ToDoListItem from "./ToDoListItem";
+import ToDoListItem from "./ToDoListItem/ToDoListItem";
+import React from "react";
+
+const IndexContext = React.createContext(0);
+const IndexEditContext = React.createContext(0);
 
 function ToDoListItemControl(props) {
-   console.log(props.list);
+   // console.log(props.list);
 
    const [valuesEdit, setValuesEdit] = useState({});
    const [list, setList] = useState([]);
@@ -39,20 +43,26 @@ function ToDoListItemControl(props) {
     
    useEffect(() => {
       console.log(list);
-      const objToJson = JSON.stringify(list);
-      localStorage.setItem(props.currentUser.name,objToJson);
+      if (list?.length !== 0) {
+         const objToJson = JSON.stringify(list);
+         localStorage.setItem(props.currentUser.name,objToJson);
+      }
    }, [list]);
 
-   const todo_list = list.map(function(element,index) {
-
-      return <ToDoListItem element={element}
-         index={index}
-         indexEdit={indexEdit}
-         handleChangeEdit={handleChangeEdit}
-         handleEditClick={handleEditClick}
-         handleDoneClick={handleDoneClick}
-         handleRemoveClick={handleRemoveClick}
-      />
+   const todo_list = list?.map(function(element,index) {
+      return (
+         <IndexContext.Provider value={index}>
+            <IndexEditContext.Provider value={indexEdit}>
+               <ToDoListItem
+                  element={element}
+                  handleChangeEdit={handleChangeEdit}
+                  handleEditClick={handleEditClick}
+                  handleDoneClick={handleDoneClick}
+                  handleRemoveClick={handleRemoveClick}
+               />
+            </IndexEditContext.Provider>
+         </IndexContext.Provider>
+      )
    });
 
    return (<div>
@@ -61,5 +71,6 @@ function ToDoListItemControl(props) {
    ) 
 };
 
-
+export {IndexContext};
+export {IndexEditContext};
 export default ToDoListItemControl;
