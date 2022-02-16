@@ -21,6 +21,16 @@
 }
 
 
+.navigation_tools > .navigation_tools__no_currentUser_logout {
+   display: none;
+}
+
+.header__button_logout {
+   padding: 0;
+   background-color: white;
+   border: none;
+}
+
 .navigation_tools > p, .home {
    margin: 20px;
    font-size: 16px;

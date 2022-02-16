@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import './App.css';
 import {
@@ -20,6 +20,7 @@ import Dashboard from "./components/js/Dashboard";
 import SignupAlternative from "./components/js/SignupAlternative";
 import LoginAlternative from "./components/js/LoginAlternative";
 import ToDoList from "./components/js/ToDoList/ToDoList";
+import Api from "./components/control/api";
 
 
 function App() {
@@ -29,29 +30,54 @@ function App() {
    const [isAuth, setIsAuth] = useState(false);
    const [currentUser, setCurrentUser] = useState({});
 
-   const updateData = (values) => {
-      setIsAuth(true);
-   }
+   
+   // useEffect(() => {
+   //    console.log(isAuth);
+   // }, [isAuth]);
+
+   useEffect(()=> {
+      if (currentUser && currentUser.name) {
+         setIsAuth(true); 
+      } else {
+         setIsAuth(false); 
+      }
+
+      console.log(currentUser); 
+   }, [currentUser]);
+
 
    const updateUser = (current_user) => {
+      console.log(current_user);
       setCurrentUser(current_user);
-      console.log(currentUser);
+   }
+
+   function getCurrentUser() {
+      Api.isLogin(0).then(result => updateUser(result));
+   }
+
+   useEffect(()=> {
+      console.log(11111111111);
+      getCurrentUser();
+   }, []);
+
+   const getLogout = () => {
+      getCurrentUser(); 
    }
 
    return (
       <Router>
          <div className={background}>
-            <Header currentUser={currentUser}/>
+            <Header currentUser={currentUser} getLogout={getLogout}/>
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
                {/* <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} /> */}
-               <Route path="/login" element={<LoginAlternative updateData={updateData} updateUser={updateUser}/>} />
+               <Route path="/login" element={<LoginAlternative updateUser={updateUser}/>} />
 
                {/* <Route path="/signup" element={<SignupHooks />} /> */}
                <Route path="/signup" element={<SignupAlternative />} />
                <Route path="/" element={<HomePage />} />
                <Route path="/dashboard" element={<PrivateRoute authed={isAuth} component={Dashboard}/>} />
-               <Route path="/todolist" element={<PrivateRoute authed={isAuth} component={ToDoList} authedName={currentUser}/>} />
+               <Route path="/todolist" element={<PrivateRoute authed={isAuth} component={ToDoList} currentUser={currentUser}/>} />
             </Routes>
          </div>
       </Router>

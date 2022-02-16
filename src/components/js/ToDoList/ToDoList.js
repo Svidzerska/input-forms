@@ -6,7 +6,7 @@ import ToDoListItemControl from "./ToDoListItemControl";
 
 
 function ToDoList(props) {
-   // console.log(props);
+   console.log(props);
 
    // const getObj = localStorage.getItem(props.authedName.name);
    // const dataFromStorage = JSON.parse(getObj);
@@ -16,14 +16,14 @@ function ToDoList(props) {
    const [list, setList] = useState([]);
 
    useEffect(() => {
-      const getObj = localStorage.getItem(props.authedName.name);
+      const getObj = localStorage.getItem(props.currentUser.name);
       if (getObj) {
          const dataFromStorage = JSON.parse(getObj);
-         console.log(dataFromStorage);
+
          setList(dataFromStorage);
       }
 
-   }, [props.authedName.name]);
+   }, [props.currentUser.name]);
 
 
    const handleChange = (e) => {
@@ -51,7 +51,7 @@ function ToDoList(props) {
       <div className="todoPage">
          <InputHooks onChange={handleChange} value={currentValue} className="todoPage__input" placeholder="Type your task..."/>
          <Button text="ADD" onClick={handleClickAdd}/>
-         <ToDoListItemControl list={list} authedName={props.authedName}/>
+         <ToDoListItemControl list={list} currentUser={props.currentUser}/>
       </div>
    )
 }

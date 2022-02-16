@@ -40,7 +40,7 @@ function ToDoListItemControl(props) {
    useEffect(() => {
       console.log(list);
       const objToJson = JSON.stringify(list);
-      localStorage.setItem(props.authedName.name,objToJson);
+      localStorage.setItem(props.currentUser.name,objToJson);
    }, [list]);
 
    const todo_list = list.map(function(element,index) {

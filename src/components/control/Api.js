@@ -100,11 +100,18 @@ const Api = {
       });
    },
 
-   isLogin: () => {
-      return wait(3000).then(() => {
+   isLogin: (duration) => {
+      return wait(duration).then(() => {
          let currentUser = JSON.parse(localStorage.getItem("Current_user"));
          console.log(currentUser);
          return currentUser;
+      });
+   }, 
+
+   logout: () => {
+      return wait(0).then(() => {
+         localStorage.removeItem("Current_user");
+         return "you are successfully logged out!";
       });
    }
 }

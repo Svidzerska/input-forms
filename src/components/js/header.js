@@ -1,8 +1,20 @@
 import {
    NavLink
 } from "react-router-dom";
+import Api from "../control/api";
+
+import Button from "./ElementForm/Button";
+
+
 
 function Header(props) {
+   console.log(props.currentUser);
+
+   const logOut = () => {
+      Api.logout().then(result => console.log(result));
+      props.getLogout();
+   }
+
    return (
       <div className='header'>
 
@@ -35,8 +47,13 @@ function Header(props) {
                      To Do List
                   </NavLink>
                </p>
-               <p className={props.currentUser.name ? "navigation_tools__currentUser" : "navigation_tools__no_currentUser"}>
-                  {props.currentUser.name ? "Logged in as " + props.currentUser.name : ""}
+               <p className={props.currentUser ? "navigation_tools__currentUser" : "navigation_tools__no_currentUser"}>
+                  {props.currentUser ? "Logged in as " + props.currentUser.name : ""}
+               </p>
+               <p className={props.currentUser ? "navigation_tools__currentUser_login" : "navigation_tools__no_currentUser_logout"}>
+                  <NavLink to="/login" className="nav-link-logout" onClick={logOut}>
+                     Log out
+                  </NavLink>
                </p>
             </div>
          </nav>

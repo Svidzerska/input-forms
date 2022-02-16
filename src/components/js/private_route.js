@@ -2,10 +2,9 @@ import {
    Navigate
 } from "react-router-dom";
 
-function PrivateRoute ({component: Component, authed, authedName}) {
-
+function PrivateRoute ({component: Component, authed, currentUser}) {
    if (authed === true) {
-      return <Component authedName={authedName}/>
+      return <Component currentUser={currentUser}/>
    } else {
       return (
       <Navigate to={{pathname: '/login'}} />

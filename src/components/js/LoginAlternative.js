@@ -44,22 +44,15 @@ function LoginAlternative(props) {
    }
 
    useEffect(() => {
-      if (isResult.information === "log-in is successed") {
-         isAuth();
-         if(isResult.current_user !== "") {
+      console.log(isResult);
+      if (isResult.information === "log-in is successed" && isResult.current_user !== "") {
             currentUser();
-         }
       }
-
-   },[isResult]);
-
-   function isAuth() {
-      console.log(valuesResult);
-      props.updateData(valuesResult);
-   }
+   }, [isResult]);
+   
 
    function currentUser() {
-      Api.isLogin().then(result => props.updateUser(result));
+      Api.isLogin(0).then(result => props.updateUser(result));
       
       // console.log(isResult.current_user);
       // props.updateUser(isResult.current_user);
