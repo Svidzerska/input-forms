@@ -25,6 +25,7 @@ import ToDoList from "./components/js/ToDoList/ToDoList";
 function App() {
 
    let background = BackgroundChange(); //state?
+   
    const [isAuth, setIsAuth] = useState(false);
    const [currentUser, setCurrentUser] = useState({});
 

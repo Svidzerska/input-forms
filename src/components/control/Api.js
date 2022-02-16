@@ -80,6 +80,9 @@ const Api = {
                }
                );
             } else if (result) {
+               let currentUser = JSON.stringify(result);
+               localStorage.setItem("Current_user", currentUser);
+
                return ({
                   information: "log-in is successed",
                   current_user: result
@@ -94,6 +97,14 @@ const Api = {
             }
             );
          }
+      });
+   },
+
+   isLogin: () => {
+      return wait(3000).then(() => {
+         let currentUser = JSON.parse(localStorage.getItem("Current_user"));
+         console.log(currentUser);
+         return currentUser;
       });
    }
 }

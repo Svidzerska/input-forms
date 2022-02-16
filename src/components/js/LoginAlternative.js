@@ -51,14 +51,18 @@ function LoginAlternative(props) {
          }
       }
 
-   },[isResult, isAuth, currentUser]);
+   },[isResult]);
 
    function isAuth() {
+      console.log(valuesResult);
       props.updateData(valuesResult);
    }
 
    function currentUser() {
-      props.updateUser(isResult.current_user);
+      Api.isLogin().then(result => props.updateUser(result));
+      
+      // console.log(isResult.current_user);
+      // props.updateUser(isResult.current_user);
    }
 
    return (
