@@ -3,8 +3,8 @@ import '../css/home_page.css';
 function HomePage(props) {
 
    return (
-      <div>
-         <div className="information_card">
+      <div className='homePage__information'>
+         <div className="homePage__information_card">
             <h1><b>FIS Alpine Ski</b> World Cup</h1>
             <h4>Rules</h4>
             <p>Competitors attempt to achieve the best time in four disciplines: slalom, giant slalom, super G, and downhill.

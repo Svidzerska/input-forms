@@ -1,11 +1,9 @@
 .todoPage {
-   margin-top: 20px;
-   margin-left: auto;
-   margin-right: auto;
    border: 3px solid rgb(102, 0, 133);
    background-color: white;
-   width: 400px;
-   
+   max-width: 400px;
+   padding: 10px;
+   margin: 20px auto 50px auto;
 }
 
 .todoPage__input {
