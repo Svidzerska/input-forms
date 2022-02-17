@@ -1,5 +1,6 @@
 import ToDoListItemInformation from "./ToDoListElements/ToDoListItemInformation";
 import ToDoListItemButtons from "./ToDoListElements/ToDoListItemButtons";
+import '../../../css/ToDoListStyles/todoPage_items.css';
 
 
 function ToDoListItem(props) {

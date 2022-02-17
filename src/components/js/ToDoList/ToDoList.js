@@ -37,7 +37,7 @@ function ToDoList(props) {
             value={currentValue}
             className="todoPage__input"
             placeholder="Type your task..." />
-         <Button text="ADD" onClick={handleClickAdd} />
+         <Button text="ADD" onClick={handleClickAdd} className="todoPage__add_button"/>
          <ToDoListItemControl list={list} currentUser={props.currentUser} />
       </div>
    )

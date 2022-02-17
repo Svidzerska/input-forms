@@ -5,6 +5,7 @@
    border: 3px solid rgb(102, 0, 133);
    background-color: white;
    width: 400px;
+   
 }
 
 .todoPage__input {
@@ -14,24 +15,21 @@
    box-sizing: border-box;
    border: 1px solid rgb(214, 164, 255);
    border-radius: 10px;
+   padding-left: 10px;
+   font-size: 16px;
+   font-family: 'Roboto';
 }
 
-.todoPage__list_item {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-   margin-left: 10px;
-   margin-right: 10px;
+.todoPage__add_button {
+   border: 2px solid rgb(183, 94, 255);
+   border-radius: 10px;
+   height: 30px;
+   font-family: 'Roboto';
 }
 
-.todoPage__list_item button {
-   margin-right: 5px;
+.todoPage__add_button:hover {
+   background-color: rgb(183, 94, 255);
 }
 
-.todoPage_inputEdit {
-   width: 150px;
-   box-sizing: border-box;
-   border: 1px solid rgb(214, 164, 255);
-}
+
 

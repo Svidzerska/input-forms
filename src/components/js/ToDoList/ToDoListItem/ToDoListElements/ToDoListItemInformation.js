@@ -16,7 +16,7 @@ function ToDoListItemInformation(props) {
    const indexEdit = useContext(IndexEditContext);
 
    return (
-      <p>{index + 1}. {index !== indexEdit ?
+      <p className="todoPage__information">{index + 1}. {index !== indexEdit ?
          element :
          <InputHooks value={element}
             className="todoPage_inputEdit"
