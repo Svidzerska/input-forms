@@ -70,7 +70,7 @@ function SignupAlternative(props) {
    return (
       <div className="form_valid">
          <form onSubmit={handleSubmit}>
-            <FormBuilder data={propsSignUp} updateData={updateData} value={__values.value}/>
+            <FormBuilder data={propsSignUp} updateData={updateData} value={__values.value} isValid={isValid}/>
             <input type="submit" value="Submit" className={isValid ? "valid_submit" : "unvalid"}/> 
          </form>
 
