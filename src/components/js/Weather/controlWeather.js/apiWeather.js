@@ -1,3 +1,4 @@
+
 let countryObj = {
    country: `ukraine`
 };
@@ -5,8 +6,8 @@ let country = JSON.stringify(countryObj);
 
 
 const ApiWeather = {
-   getWeather: (() => {
-   return getWeatherCity('GET','Kharkiv'); //city?
+   getWeather: ((city) => {
+   return getWeatherCity('GET', city); //city?
    }),
    getCity: (() => {
       return getUkraineCity('POST', country);
@@ -24,28 +25,20 @@ async function getWeatherCity(method, city) {
    }
 }
 
-
-function getUkraineCity(method, country) {
-   return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open(method, 'https://countriesnow.space/api/v0.1/countries/cities');
-      xhr.responseType = "json";
-      xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-      xhr.onload = () => {
-         if (xhr.status === 200) {
-            resolve(xhr.response);
-         } else {
-            var error = new Error(this.statusText);
-            error.code = this.status;
-            reject(error);
-         }
-      }
-      xhr.onerror = () => {
-         reject(new Error("Network Error"));
-      }
-      xhr.send(country);
-   })
-}
-
+async function getUkraineCity(method, country) {
+   try {
+      let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
+         method: method,
+         headers: {
+           'Content-Type': 'application/json; charset=utf-8'
+         },
+         body: country
+       });
+      let json = await result.json();
+      return json;
+   } catch (err) {
+      return err;
+   }
+} 
 
 export default ApiWeather;
