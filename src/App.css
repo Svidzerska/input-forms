@@ -45,6 +45,10 @@
    background-color: white;
 }
 
+.navigation_tools > p.navigation_tools__weather {
+   background-color: rgb(211, 235, 255);
+}
+
 
 a {
    color: rgb(27, 0, 53);
@@ -137,5 +141,6 @@ div.blue::after, div.yellow::after, div.orange::after, div.green::after {
 
    .navigation_tools > p, .home {
       margin: 7px;
+      text-align: center;
    }
 }

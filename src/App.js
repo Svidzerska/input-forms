@@ -21,6 +21,7 @@ import SignupAlternative from "./components/js/SignupAlternative";
 import LoginAlternative from "./components/js/LoginAlternative";
 import ToDoList from "./components/js/ToDoList/ToDoList";
 import Api from "./components/control/api";
+import Weather from "./components/js/Weather/Weather";
 
 
 function App() {
@@ -56,7 +57,6 @@ function App() {
    }
 
    useEffect(()=> {
-      console.log(11111111111);
       getCurrentUser();
    }, []);
 
@@ -71,6 +71,8 @@ function App() {
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
                {/* <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} /> */}
+               <Route path="/weather" element={<Weather/>} />
+               
                <Route path="/login" element={<LoginAlternative updateUser={updateUser}/>} />
 
                {/* <Route path="/signup" element={<SignupHooks />} /> */}

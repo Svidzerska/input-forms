@@ -23,6 +23,11 @@ function Header(props) {
          </div>
          <nav>
             <div className='navigation_tools'>
+               <p className="navigation_tools__weather">
+                  <NavLink to="/weather" className="nav-link">
+                     Weather
+                  </NavLink>
+               </p>
                <p>
                   <NavLink to="/login" className="nav-link">
                      Login
