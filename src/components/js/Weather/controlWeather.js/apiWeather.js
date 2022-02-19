@@ -9,8 +9,8 @@ const ApiWeather = {
    getWeather: ((city) => {
    return getWeatherCity('GET', city); //city?
    }),
-   getCity: (() => {
-      return getUkraineCity('POST', country);
+   getCities: (() => {
+      return getUkraineCities('POST', country);
    })
 }
 
@@ -25,7 +25,7 @@ async function getWeatherCity(method, city) {
    }
 }
 
-async function getUkraineCity(method, country) {
+async function getUkraineCities(method, country) {
    try {
       let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
          method: method,

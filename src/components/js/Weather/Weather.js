@@ -3,70 +3,49 @@ import Select from "../ElementForm/Select_component";
 import './weatherPage.css';
 import ApiWeather from "./controlWeather.js/apiWeather";
 import WeatherInfoResult from "./weatherInfo/WeatherInfoResult";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from 'react-redux' ;
-import {setCity} from '../../../app/features/cities/citiesSlice';
 import {useSelector} from 'react-redux';
+import {setCity} from '../../../app/features/city/citySlice'
+import { getCities } from "../../../app/features/cities/citiesSlice";
+
 
 function Weather(props) {
 
    const dispatch = useDispatch();
 
-   const [cities, setCities] = useState([]);
-   const city = useSelector((state) => state.cities.selectCity)
+   const citiesStore = useSelector((state)=> state.cities.cities);
+   const city = useSelector((state) => state.city.selectCity)
 
-   const getWeather = () => {
-      ApiWeather.getWeather(city).then(data => console.log(data));
-   }
-
-   const getCity = () => {
-      ApiWeather.getCity().then(data => {
-         console.log(data.data);
-         setCities(data.data)}
-      );
-   }
-
-   useEffect(()=> {
-      getWeather();
-      getCity();
-   }, [city]);
-
-   
-   const select_city = cities.map(city => {
-      return {value: city, label: city}
-   });
-
-   console.log(select_city);
-
-   // const getCitiesAction = {
-   //    type: 'weather/getCitiesList',
-   //    payload: ''
+   // const getWeather = () => {
+   //    ApiWeather.getWeather(city).then(data => console.log(data));  //city!!!
    // }
 
-   // const initialState = {value:[]};
 
-//    function getCitiesReducer(state = initialState, action = getCitiesAction) {
-//   if (action.type === 'weather/getCitiesList') {
-//     return {
-//       ...state,
-//       value: select_city
-//     }
-//   }
-//   return state
-// }
+   useEffect(()=> {
+      // getWeather();
+   }, [city]);
 
-// const store = configureStore({ reducer: getCitiesReducer })
+   useEffect(()=> {
+      console.log(citiesStore);
+   }, [citiesStore]);
 
-// console.log(store);
+   
 
-// store.dispatch({ type: 'weather/getCitiesList' });
+   useEffect(() => {
+      dispatch(getCities());
+   }, []);
+   
 
-// console.log(store);
+   
+   const select_city = citiesStore.map(city => {
+      return {value: city, label: city}
+   });
+   select_city.unshift({value: 'Choose city', label: 'Choose city'});
 
-const handleChange = (e) => {
-   dispatch(setCity(e.target.value));
-}
-
+   const handleChange = (e) => {
+      dispatch(setCity(e.target.value));
+   }
 
    return (<div className="weatherPage">
       <Select className="weatherPage_select" onChange={handleChange} options= {select_city}/>
