@@ -9,12 +9,27 @@
 
 .weatherPage_select {
    width: 100px;
-   margin-left: auto;
-   margin-right: auto;
+   margin: 10px;
    height: 30px;
 }
 
 .weatherPage_select__select_element {
+   font-family: 'Roboto';
+   font-size: 16px;
+   padding-left: 10px;
    height: 30px;
    box-sizing: border-box;
 }
+
+.weatherPage_select__select_element > option:nth-child(odd) {
+   background-color: rgba(171, 130, 238, 0.424);
+}
+
+.weatherPage_select__select_element > option:first-child {
+   background-color: rgb(171, 130, 238);
+   color: red;
+   text-align: center;
+}
+
+
+
