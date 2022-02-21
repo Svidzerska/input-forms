@@ -24,6 +24,7 @@ export const citiesSlice = createSlice({
    initialState,
    reducers: {
       setCities: (state, action) => {
+         console.log(action);
          state.cities = action.payload
       }
    },
@@ -35,5 +36,5 @@ export const citiesSlice = createSlice({
 
 })
 
-export const { setCities } = citiesSlice.actions
-export default citiesSlice.reducer
+export const { setCities } = citiesSlice.actions;
+export default citiesSlice.reducer;

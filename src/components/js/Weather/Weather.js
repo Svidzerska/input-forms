@@ -18,6 +18,7 @@ function Weather(props) {
    const city = useSelector((state) => state.city.selectCity);
 
    useEffect(() => {
+      console.log(city);
       dispatch(getWeather(city));
    }, [city]);
 
@@ -31,6 +32,7 @@ function Weather(props) {
    select_city.unshift({ value: 'Choose city', label: 'Choose city' });
 
    const handleChange = (e) => {
+      console.log()
       dispatch(setCity(e.target.value));
    }
 

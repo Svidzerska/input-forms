@@ -7,8 +7,15 @@ let country = JSON.stringify(countryObj);
 
 const ApiWeather = {
    getWeather: ((city) => {
-   return getWeatherCity('GET', city); //city?
+   if (city !== "") {
+      return getWeatherCity('GET', city);
+   }
    }),
+
+   getIconImage: ((code) => {
+      return getIconImageFromCode('GET', code);
+   }),
+
    getCities: (() => {
       return getUkraineCities('POST', country);
    })
@@ -24,6 +31,17 @@ async function getWeatherCity(method, city) {
       return err;
    }
 }
+
+async function getIconImageFromCode(method, icon) {
+   try {
+      let result = await fetch(`http://openweathermap.org/img/wn/${icon}@2x.png`, {
+      });
+      return result;
+   } catch (err) {
+      return err;
+   }
+}
+
 
 async function getUkraineCities(method, country) {
    try {

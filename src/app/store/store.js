@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-import citySlice from '../features/city/citySlice'
-import citiesSlice from '../features/cities/citiesSlice'
-import weatherSlice from '../features/weather/weatherSlice'
+import cityReducer from '../features/city/citySlice'
+import citiesReducer from '../features/cities/citiesSlice'
+import weatherReducer from '../features/weather/weatherSlice'
+import iconReducer from '../features/weather/iconSlice'
 
 export const store = configureStore({
   reducer: {
-      city: citySlice,
-      cities: citiesSlice,
-      weather: weatherSlice,
+      city: cityReducer,
+      cities: citiesReducer,
+      weather: weatherReducer,
+      icon: iconReducer,
   }
 })

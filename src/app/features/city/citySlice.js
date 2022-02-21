@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-   selectCity: ""
+   selectCity: ""    //city - initial state empty string!
 }
 
 
@@ -12,6 +12,7 @@ export const citySlice = createSlice({
    initialState,
    reducers: {
       setCity: (state, action) => {
+         console.log(action);
          state.selectCity = action.payload
       },
    },
