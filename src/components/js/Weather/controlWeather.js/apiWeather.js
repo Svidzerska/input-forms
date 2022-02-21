@@ -48,15 +48,40 @@ async function getUkraineCities(method, country) {
       let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
          method: method,
          headers: {
-           'Content-Type': 'application/json; charset=utf-8'
+           'Content-Type': 'application/json; charset=utf-8',
          },
          body: country
        });
       let json = await result.json();
       return json;
    } catch (err) {
-      return err;
+      var error = new Error(err);
+      return error;
    }
 } 
+
+
+
+// function getUkraineCities(method, country) {
+//    return new Promise((resolve, reject) => {
+//       const xhr = new XMLHttpRequest();
+//       xhr.open(method, "https://countriesnow.space/api/v0.1/countries/cities");
+//       xhr.responseType = "json";
+//       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+//       xhr.onload = () => {
+//          if (xhr.status === 200) {
+//             resolve(xhr.response);
+//          } else {
+//             var error = new Error(this.statusText);
+//             error.code = this.status;
+//             reject(error);
+//          }
+//       }
+//       xhr.onerror = () => {
+//          reject(new Error("Network Error"));
+//       }
+//       xhr.send(country);
+//    })
+// }
 
 export default ApiWeather;

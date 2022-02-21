@@ -1,0 +1,21 @@
+.weatherPage__information_hidden {
+   display: none;
+}
+
+.weatherPage__information {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 10px;
+   font-family: 'Roboto';
+}
+
+.weatherPage__information_city > p > p {
+   color: rgb(72, 2, 138);
+   font-size: 24px;
+}
+
+.weatherPage__information_temperature {
+   text-align: center;
+}
+

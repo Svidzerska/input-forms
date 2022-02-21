@@ -29,7 +29,8 @@ function Weather(props) {
    const select_city = citiesStore?.map(city => {
       return { value: city, label: city }
    });
-   select_city.unshift({ value: 'Choose city', label: 'Choose city' });
+   
+   select_city?.unshift({ value: 'Choose city', label: 'Choose city' });
 
    const handleChange = (e) => {
       console.log()
@@ -37,7 +38,7 @@ function Weather(props) {
    }
 
    return (<div className="weatherPage">
-      <Select size="1" multiple className="weatherPage_select" onChange={handleChange} options={select_city} />
+      <Select size="1" multiple className="weatherPage_select" onChange={handleChange} options={select_city ? select_city : [{ value: 'Choose city', label: 'Choose city' }]} />
       <WeatherInfoResult />
    </div>
    )

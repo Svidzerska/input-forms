@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import './weatherInfoResult.css';
 import {useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import ApiWeather from "../controlWeather.js/apiWeather";
 import { setIcon } from "../../../../app/features/weather/iconSlice";
 import { useDispatch } from "react-redux";
+
 
 
 
@@ -26,15 +27,15 @@ function WeatherInfoResult(props) {
    }, [weather]);
 
    return (
-   <div className="weatherPage__information">
-         <div><p>{city}</p></div>
-         <div>
+   <div className={city!=="" ? "weatherPage__information" : "weatherPage__information_hidden"}>
+         <div className="weatherPage__information_city"><p>Chosen city: <p className="weatherPage__information_cityName">{city}</p></p></div>
+         <div className="weatherPage__information_clouds">
             <img src={icon} alt={weather?.weather[0]?.icon}/>
             <p>{weather?.weather[0]?.description}</p>
          </div>
-         <div>
-            <p>{Math.round(weather?.main?.temp)} &#176;C</p>
-         <p>feels like:<br/>{Math.round(weather?.main?.feels_like)} &#176;C</p>
+         <div className="weatherPage__information_temperature">
+            <p>temperature:<br/> {Math.round(weather?.main?.temp)} &#176;C</p>
+            <p>feels like:<br/>{Math.round(weather?.main?.feels_like)} &#176;C</p>
          </div>
    </div>
    )
