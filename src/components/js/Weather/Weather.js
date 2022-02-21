@@ -9,6 +9,7 @@ import { setCity } from '../../../app/features/city/citySlice'
 import { getCities } from "../../../app/features/cities/citiesSlice";
 import { getWeather } from '../../../app/features/weather/weatherSlice';
 
+import list from "../../json/ua";
 
 function Weather(props) {
 
@@ -26,6 +27,24 @@ function Weather(props) {
       dispatch(getCities());
    }, []);
 
+   console.log(list);
+
+   const select_city_here = list.map(element => {
+      // return { value: element.city, label: element.city }
+      return element.city
+   });
+
+   console.log(select_city_here.sort());
+
+   const select_city_here_sort = select_city_here?.sort().map(city => {
+      return { value: city, label: city }
+   });
+   
+   select_city_here_sort?.unshift({ value: 'Choose city', label: 'Choose city' });
+
+   
+   console.log(citiesStore);
+
    const select_city = citiesStore?.map(city => {
       return { value: city, label: city }
    });
@@ -38,7 +57,7 @@ function Weather(props) {
    }
 
    return (<div className="weatherPage">
-      <Select size="1" multiple className="weatherPage_select" onChange={handleChange} options={select_city ? select_city : [{ value: 'Choose city', label: 'Choose city' }]} />
+      <Select size="1" multiple className="weatherPage_select" onChange={handleChange} options={select_city ? select_city : select_city_here_sort} />
       <WeatherInfoResult />
    </div>
    )

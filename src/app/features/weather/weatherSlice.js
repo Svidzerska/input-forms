@@ -3,6 +3,7 @@ import ApiWeather from "../../../components/js/Weather/controlWeather.js/apiWeat
 
 const initialState = {
    weather: {},
+   // icon: ""
 }
 
 
@@ -25,8 +26,9 @@ export const weatherSlice = createSlice({
       setWeather: (state, action) => {
          state.weatherObject = action.payload
       },
+      // setIcon 
    },
-   extraReducers: {
+   extraReducers: { //preloader
       [getWeather.fulfilled] : () => console.log('fullfiled'),
       [getWeather.pending] : () => console.log('pending'),
       [getWeather.rejected] : () => console.log('rejected'),

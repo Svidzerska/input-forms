@@ -19,3 +19,7 @@
    text-align: center;
 }
 
+.cod_not200_hidden, .cod200_hidden {
+   display: none;
+}
+

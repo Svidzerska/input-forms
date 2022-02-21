@@ -11,8 +11,7 @@ export const getCities = createAsyncThunk(
    'cities/getCities',
    async (_,{rejectWithValue, dispatch}) => {
       ApiWeather.getCities().then(data => {
-         console.log(data);
-         console.log(data.data);
+         data.data.sort();
          dispatch(setCities(data.data));
       });
    },

@@ -1,4 +1,5 @@
 
+
 let countryObj = {
    country: `ukraine`
 };
@@ -10,10 +11,6 @@ const ApiWeather = {
    if (city !== "") {
       return getWeatherCity('GET', city);
    }
-   }),
-
-   getIconImage: ((code) => {
-      return getIconImageFromCode('GET', code);
    }),
 
    getCities: (() => {
@@ -32,17 +29,6 @@ async function getWeatherCity(method, city) {
    }
 }
 
-async function getIconImageFromCode(method, icon) {
-   try {
-      let result = await fetch(`http://openweathermap.org/img/wn/${icon}@2x.png`, {
-      });
-      return result;
-   } catch (err) {
-      return err;
-   }
-}
-
-
 async function getUkraineCities(method, country) {
    try {
       let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
@@ -60,28 +46,26 @@ async function getUkraineCities(method, country) {
    }
 } 
 
+// async function getUkraineCities(method, country) {
+//    var headers = new Headers();
+//    headers.append("X-CSCAPI-KEY", "API_KEY");
+
+//    var requestOptions = {
+//    method: 'GET',
+//    headers: headers,
+//    redirect: 'follow'
+//    };
+
+//    try {
+//       let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities', requestOptions);
+//       let json = await result.json();
+//       return json;
+//    } catch (err) {
+//       var error = new Error(err);
+//       return error;
+//    }
+// } 
 
 
-// function getUkraineCities(method, country) {
-//    return new Promise((resolve, reject) => {
-//       const xhr = new XMLHttpRequest();
-//       xhr.open(method, "https://countriesnow.space/api/v0.1/countries/cities");
-//       xhr.responseType = "json";
-//       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-//       xhr.onload = () => {
-//          if (xhr.status === 200) {
-//             resolve(xhr.response);
-//          } else {
-//             var error = new Error(this.statusText);
-//             error.code = this.status;
-//             reject(error);
-//          }
-//       }
-//       xhr.onerror = () => {
-//          reject(new Error("Network Error"));
-//       }
-//       xhr.send(country);
-//    })
-// }
 
 export default ApiWeather;
