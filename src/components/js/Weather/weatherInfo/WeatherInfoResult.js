@@ -6,8 +6,6 @@ import { setIcon } from "../../../../app/features/weather/weatherSlice";
 import { useDispatch } from "react-redux";
 
 
-
-
 function WeatherInfoResult(props) {
 
    const dispatch = useDispatch();
@@ -27,7 +25,8 @@ function WeatherInfoResult(props) {
       } 
    }, [weather]);
 
-   return (
+   return (<div>
+      <div className={typeof weather === 'string' ? "weather_pending" : "weather_fulfilled"}>{typeof weather === 'string' ? weather : ""}</div>
    <div className={city!=="" ? "weatherPage__information" : "weatherPage__information_hidden"}>
          <div className="weatherPage__information_city"><p>Chosen city: <p className="weatherPage__information_cityName">{city}</p></p></div>
          <div className={weather?.cod === 200 ? "weatherPage__information_clouds": "cod_not200_hidden"}>
@@ -49,6 +48,7 @@ function WeatherInfoResult(props) {
                "" :
                 weather?.message
               }</div>
+   </div>
    </div>
    )
 };

@@ -10,10 +10,10 @@ const initialState = {
 
 export const getWeather = createAsyncThunk(
    'weather/getWeather',
-   async (city, { rejectWithValue, dispatch }) => {
-      
-      ApiWeather.getWeather(city).then(data => {
-         dispatch(setWeather(data)); //payload - data
+   async (city, { rejectWithValue }) => {
+            
+      return ApiWeather.getWeather(city).then(data => {
+         return data;  //payload - data
       });
    },
 )
@@ -22,18 +22,21 @@ export const getWeather = createAsyncThunk(
 export const weatherSlice = createSlice({
    name: 'weather',
    initialState,
-   reducers: {
-      setWeather: (state, action) => {
-         state.weatherObject = action.payload
-      }, 
+   reducers: { 
       setIcon: (state, action) => {
          state.iconImage = action.payload
       }
    },
    extraReducers: { //preloader
-      [getWeather.fulfilled] : () => console.log('fullfiled'),
-      [getWeather.pending] : () => console.log('pending'),
-      [getWeather.rejected] : () => console.log('rejected'),
+      [getWeather.fulfilled] : (state,action) => {
+         state.weatherObject = action.payload;
+      console.log('fullfiled')},
+      [getWeather.pending] : (state) => {
+            state.weatherObject = 'please wait a moment';
+         console.log('pending')},
+      [getWeather.rejected] : (state) => {
+         state.weatherObject = {};
+      console.log('rejected')} ,
    }
 
 },
