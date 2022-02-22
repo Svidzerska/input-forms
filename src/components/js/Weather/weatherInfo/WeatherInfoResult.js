@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import './weatherInfoResult.css';
 import {useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import { setIcon } from "../../../../app/features/weather/iconSlice";
+import { setIcon } from "../../../../app/features/weather/weatherSlice";
 import { useDispatch } from "react-redux";
 
 
@@ -15,7 +15,7 @@ function WeatherInfoResult(props) {
 
    const city = useSelector((state) => state.city.selectCity)
    const weather = useSelector((state) => state.weather.weatherObject);
-   const icon = useSelector((state) => state.icon.iconImage);
+   const icon = useSelector((state) => state.weather.iconImage);
 
 
    useEffect(() => {

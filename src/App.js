@@ -36,17 +36,8 @@ function App() {
    //    console.log(isAuth);
    // }, [isAuth]);
 
-   // useEffect(()=> {
-   //    if (currentUser && currentUser.name) {
-   //       setIsAuth(true); 
-   //    } else {
-   //       setIsAuth(false); 
-   //    }
-
-   //    console.log(currentUser); 
-   // }, [currentUser]);
-
    useEffect(()=> {
+      console.log(currentUser, !!currentUser);
       setIsAuth(!!currentUser && !!currentUser.name)
    });
 

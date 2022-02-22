@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import ApiWeather from "../../../components/js/Weather/controlWeather.js/apiWeather";
 
 const initialState = {
-   weather: {},
-   // icon: ""
+   weatherObject: {},
+   iconImage: "",
 }
 
 
@@ -25,8 +25,10 @@ export const weatherSlice = createSlice({
    reducers: {
       setWeather: (state, action) => {
          state.weatherObject = action.payload
-      },
-      // setIcon 
+      }, 
+      setIcon: (state, action) => {
+         state.iconImage = action.payload
+      }
    },
    extraReducers: { //preloader
       [getWeather.fulfilled] : () => console.log('fullfiled'),
@@ -37,6 +39,6 @@ export const weatherSlice = createSlice({
 },
 )
 
-export const { setWeather } = weatherSlice.actions;
+export const { setWeather, setIcon } = weatherSlice.actions;
 export default weatherSlice.reducer;
 
