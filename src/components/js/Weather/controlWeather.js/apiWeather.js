@@ -8,9 +8,9 @@ let country = JSON.stringify(countryObj);
 
 const ApiWeather = {
    getWeather: ((city) => {
-   if (city !== "") {
-      return getWeatherCity('GET', city);
-   }
+      if (city !== "") {
+         return getWeatherCity('GET', city);
+      }
    }),
 
    getCities: (() => {
@@ -34,17 +34,22 @@ async function getUkraineCities(method, country) {
       let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
          method: method,
          headers: {
-           'Content-Type': 'application/json; charset=utf-8',
+            'Content-Type': 'application/json; charset=utf-8',
          },
          body: country
-       });
-      let json = await result.json();
-      return json;
+      });
+
+      if (result.status === 200) {
+         let json = await result.json();
+         return json;
+      } else {
+         return result.status;
+      }
    } catch (err) {
       var error = new Error(err);
       return error;
    }
-} 
+}
 
 // async function getUkraineCities(method, country) {
 //    var headers = new Headers();
