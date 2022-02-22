@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "../ElementForm/Select_component";
-import './weatherPage.css';
+import './weatherPage.scss';
 import WeatherInfoResult from "./weatherInfo/WeatherInfoResult";
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';

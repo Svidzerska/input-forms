@@ -11,8 +11,9 @@ const initialState = {
 export const getWeather = createAsyncThunk(
    'weather/getWeather',
    async (city, { rejectWithValue }) => {
-            
+
       return ApiWeather.getWeather(city).then(data => {
+         console.log(data);
          return data;  //payload - data
       });
    },
@@ -32,7 +33,7 @@ export const weatherSlice = createSlice({
          state.weatherObject = action.payload;
       console.log('fullfiled')},
       [getWeather.pending] : (state) => {
-            state.weatherObject = 'please wait a moment';
+            state.weatherObject = {warning : 'please wait a moment'};
          console.log('pending')},
       [getWeather.rejected] : (state) => {
          state.weatherObject = {};

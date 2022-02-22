@@ -1,5 +1,3 @@
-
-
 let countryObj = {
    country: `ukraine`
 };
@@ -24,7 +22,9 @@ async function getWeatherCity(method, city) {
       let result = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&lang=en&units=metric&appid=18403b04ed7c3c2c59d89a2a42ba33c0');
       let json = await result.json();
       return json;
+
    } catch (err) {
+      console.log(err);
       return err;
    }
 }
