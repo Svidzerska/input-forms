@@ -41,7 +41,35 @@ async function getUkraineCities(method, country) {
 
       if (result.status === 200) {
          let json = await result.json();
-         return json;
+         return json.data; //array of cities
+      } else {
+         console.log(result.status);
+         return getUkraineCitiesGetRequest();
+      }
+   } catch (err) {
+      var error = new Error(err);
+      console.log(error);
+      return getUkraineCitiesGetRequest();
+   }
+}
+
+async function getUkraineCitiesGetRequest() {
+   var headers = new Headers();
+   headers.append("X-CSCAPI-KEY", "Z3M1RWlBWVNpcGZWMElQMGZlRlhBTkRYcGJ2S29lUTNlamZaaG44Qg==");
+
+   var requestOptions = {
+   method: 'GET',
+   headers: headers,
+   redirect: 'follow'
+   };
+
+   try {
+      let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities', requestOptions);
+      
+      if (result.status === 200) {
+         let json = await result.json();
+         let cities = json.map(element => element.name)
+         return cities;
       } else {
          return result.status;
       }
@@ -49,27 +77,7 @@ async function getUkraineCities(method, country) {
       var error = new Error(err);
       return error;
    }
-}
-
-// async function getUkraineCities(method, country) {
-//    var headers = new Headers();
-//    headers.append("X-CSCAPI-KEY", "API_KEY");
-
-//    var requestOptions = {
-//    method: 'GET',
-//    headers: headers,
-//    redirect: 'follow'
-//    };
-
-//    try {
-//       let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities', requestOptions);
-//       let json = await result.json();
-//       return json;
-//    } catch (err) {
-//       var error = new Error(err);
-//       return error;
-//    }
-// } 
+} 
 
 
 
