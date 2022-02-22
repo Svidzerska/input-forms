@@ -35,15 +35,19 @@ function App() {
    //    console.log(isAuth);
    // }, [isAuth]);
 
-   useEffect(()=> {
-      if (currentUser && currentUser.name) {
-         setIsAuth(true); 
-      } else {
-         setIsAuth(false); 
-      }
+   // useEffect(()=> {
+   //    if (currentUser && currentUser.name) {
+   //       setIsAuth(true); 
+   //    } else {
+   //       setIsAuth(false); 
+   //    }
 
-      console.log(currentUser); 
-   }, [currentUser]);
+   //    console.log(currentUser); 
+   // }, [currentUser]);
+
+   useEffect(() => {
+      setIsAuth(!!currentUser && !!currentUser.name)
+   });
 
 
    const updateUser = (current_user) => {
