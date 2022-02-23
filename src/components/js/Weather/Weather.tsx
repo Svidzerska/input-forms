@@ -3,19 +3,17 @@ import Select from "../ElementForm/Select_component";
 import './weatherPage.scss';
 import WeatherInfoResult from "./weatherInfo/WeatherInfoResult";
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
 import { setCity } from '../../../app/features/city/citySlice'
 import { getCities } from "../../../app/features/cities/citiesSlice";
-import { getWeather } from '../../../app/features/weather/weatherSlice';
+import { getWeather } from "../../../app/features/weather/weatherSlice";
 
-
-function Weather(props) {
+function Weather(props : any) {
 
    const dispatch = useDispatch();
 
-   const citiesStore = useSelector((state) => state.cities.cities);
-   const city = useSelector((state) => state.city.selectCity);
+   const citiesStore = useSelector((state : RootStateOrAny) => state.cities.cities);
+   const city = useSelector((state : RootStateOrAny) => state.city.selectCity);
 
    useEffect(() => {
       console.log(city);
@@ -28,14 +26,13 @@ function Weather(props) {
    
    // console.log(citiesStore);
 
-   const select_city = citiesStore?.map(city => {
+   const select_city = citiesStore?.map((city : string) => {
       return { value: city, label: city }
    });
    
    select_city?.unshift({ value: 'Choose city', label: 'Choose city' });
 
-   const handleChange = (e) => {
-      console.log()
+   const handleChange = (e : any) => {
       dispatch(setCity(e.target.value));
    }
 

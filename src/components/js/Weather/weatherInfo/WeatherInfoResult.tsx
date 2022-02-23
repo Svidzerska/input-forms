@@ -1,24 +1,24 @@
-import React from "react";
+import * as React from "react";
 import './weatherInfoResult.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { useEffect } from 'react';
 import { setIcon } from "../../../../app/features/weather/weatherSlice";
 import { useDispatch } from "react-redux";
 
 
-function WeatherInfoResult(props) {
+function WeatherInfoResult(props : any) {
 
    const dispatch = useDispatch();
 
 
-   const city = useSelector((state) => state.city.selectCity)
-   const weather = useSelector((state) => state.weather.weatherObject);
-   const icon = useSelector((state) => state.weather.iconImage);
+   const city = useSelector((state : RootStateOrAny) => state.city.selectCity)
+   const weather = useSelector((state : RootStateOrAny) => state.weather.weatherObject);
+   const icon = useSelector((state : RootStateOrAny) => state.weather.iconImage);
 
 
    useEffect(() => {
       console.log(weather);
-      if (weather.weather) {
+      if (weather?.weather) {
          let code = weather.weather[0].icon;
          const iconImage = `http://openweathermap.org/img/wn/${code}@2x.png`;
          dispatch(setIcon(iconImage));

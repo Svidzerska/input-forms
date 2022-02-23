@@ -21,7 +21,7 @@ import SignupAlternative from "./components/js/SignupAlternative";
 import LoginAlternative from "./components/js/LoginAlternative";
 import ToDoList from "./components/js/ToDoList/ToDoList";
 import Api from "./components/control/api";
-import Weather from "./components/js/Weather/Weather";
+import Weather from "./components/js/Weather/Weather.tsx";
 
 
 function App() {

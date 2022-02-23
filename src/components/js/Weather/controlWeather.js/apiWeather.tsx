@@ -5,7 +5,7 @@ let country = JSON.stringify(countryObj);
 
 
 const ApiWeather = {
-   getWeather: ((city) => {
+   getWeather: ((city : string) => {
       if (city !== "") {
          return getWeatherCity('GET', city);
       }
@@ -17,7 +17,7 @@ const ApiWeather = {
 }
 
 
-async function getWeatherCity(method, city) {
+async function getWeatherCity(method : string, city : string) {
    try {
       let result = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&lang=en&units=metric&appid=18403b04ed7c3c2c59d89a2a42ba33c0');
       let json = await result.json();
@@ -29,7 +29,7 @@ async function getWeatherCity(method, city) {
    }
 }
 
-async function getUkraineCities(method, country) {
+async function getUkraineCities(method : string, country : string) {
    try {
       let result = await fetch('https://countriesnow.space/api/v0.1/countries/cities', {
          method: method,
@@ -46,8 +46,8 @@ async function getUkraineCities(method, country) {
          console.log(result.status);
          return getUkraineCitiesGetRequest();
       }
-   } catch (err) {
-      var error = new Error(err);
+   } catch (err : any) {
+      let error = new Error(err);
       console.log(error);
       return getUkraineCitiesGetRequest();
    }
@@ -57,24 +57,28 @@ async function getUkraineCitiesGetRequest() {
    var headers = new Headers();
    headers.append("X-CSCAPI-KEY", "Z3M1RWlBWVNpcGZWMElQMGZlRlhBTkRYcGJ2S29lUTNlamZaaG44Qg==");
 
-   var requestOptions = {
+   interface RequestOptions {
+      method: string,
+      headers: typeof headers,
+   }
+
+   let requestOptions = {
    method: 'GET',
-   headers: headers,
-   redirect: 'follow'
-   };
+   headers: headers
+   } as RequestOptions;
 
    try {
-      let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities', requestOptions);
-      
+      let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities',
+      requestOptions);
       if (result.status === 200) {
          let json = await result.json();
-         let cities = json.map(element => element.name)
+         let cities = json.map((element : any) => element.name)
          return cities;
       } else {
          return result.status;
       }
-   } catch (err) {
-      var error = new Error(err);
+   } catch (err : any) {
+      let error = new Error(err);
       return error;
    }
 } 
