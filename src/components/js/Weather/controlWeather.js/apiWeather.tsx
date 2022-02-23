@@ -5,6 +5,10 @@ let country = JSON.stringify(countryObj);
 
 
 const ApiWeather = {
+   getForecast: ((coordinates: any) => {
+      return getWeatherForecast('GET', coordinates?.lat, coordinates?.lon);
+   }),
+
    getWeather: ((city : string) => {
       if (city !== "") {
          return getWeatherCity('GET', city);
@@ -14,6 +18,19 @@ const ApiWeather = {
    getCities: (() => {
       return getUkraineCities('POST', country);
    })
+}
+
+
+async function getWeatherForecast(method : string, lat : number, lon : number) {
+   try {
+      let result = await fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&lang=en&units=metric&appid=18403b04ed7c3c2c59d89a2a42ba33c0');
+      let json = await result.json();
+      return json;
+
+   } catch (err) {
+      console.log(err);
+      return err;
+   }
 }
 
 
@@ -71,8 +88,8 @@ async function getUkraineCitiesGetRequest() {
       let result = await fetch('https://api.countrystatecity.in/v1/countries/UA/cities',
       requestOptions);
       if (result.status === 200) {
-         let json = await result.json();
-         let cities = json.map((element : any) => element.name)
+         let json : Array<any> = await result.json();
+         let cities = json.map((element) => element.name)
          return cities;
       } else {
          return result.status;
@@ -81,7 +98,7 @@ async function getUkraineCitiesGetRequest() {
       let error = new Error(err);
       return error;
    }
-} 
+}
 
 
 

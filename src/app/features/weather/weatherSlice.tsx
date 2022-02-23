@@ -41,17 +41,6 @@ export const weatherSlice = createSlice({
          state.iconImage = action.payload
       }
    },
-   // extraReducers: { //preloader
-   //    [getWeather.fulfilled] : (state,action) => {
-   //       state.weatherObject = action.payload;
-   //    console.log('fullfiled')},
-   //    [getWeather.pending] : (state) => {
-   //          state.weatherObject = {warning : 'please wait a moment'};
-   //       console.log('pending')},
-   //    [getWeather.rejected] : (state) => {
-   //       state.weatherObject = {};
-   //    console.log('rejected')} ,
-   // }
    extraReducers: (builder) => {
       builder.addCase(getWeather.fulfilled, (state, action) => {
          state.weatherObject = action.payload;

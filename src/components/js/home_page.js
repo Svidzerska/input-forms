@@ -1,9 +1,11 @@
 import '../css/home_page.css';
+import Weather from './Weather/Weather';
 
 function HomePage(props) {
 
    return (
       <div className='homePage__information'>
+         <Weather/>
          <div className="homePage__information_card">
             <h1><b>FIS Alpine Ski</b> World Cup</h1>
             <h4>Rules</h4>

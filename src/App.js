@@ -22,6 +22,7 @@ import LoginAlternative from "./components/js/LoginAlternative";
 import ToDoList from "./components/js/ToDoList/ToDoList";
 import Api from "./components/control/api";
 import Weather from "./components/js/Weather/Weather.tsx";
+import WeatherForecast from "./components/js/Weather/WeatherForecast";
 
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
             <Routes>
                {/* <Route path="/login" element={<LoginHooks updateData={updateData} updateUser={updateUser}/>} /> */}
                {/* <Route path="/login" element={<LoginClass updateData={updateData} updateUser={updateUser}/>} /> */}
-               <Route path="/weather" element={<Weather/>} />
+               <Route path="/weather" element={<WeatherForecast/>} />
                
                <Route path="/login" element={<LoginAlternative updateUser={updateUser}/>} />
 
