@@ -6,6 +6,7 @@ import { getWeatherForecast, setCityForecast } from "../../../app/features/weath
 import { getWeatherCoord } from "../../../app/features/weatherForecast/weatherForecastSlice";
 import { setCoordinates } from "../../../app/features/weatherForecast/weatherForecastSlice";
 import Button from "../ElementForm/Button";
+import WeatherForecastInfo from "./weatherInfo/WeatherForecastInfo";
 
 function WeatherForecast(props : any) {
 
@@ -46,6 +47,8 @@ function WeatherForecast(props : any) {
       "weatherForecast_go" : 
       "weatherForecast_no_data"} text="Go" onClick={handleButton}/>
       <div>{weather?.cod === 200 ? "" : weather?.message}</div>
+      
+      <WeatherForecastInfo/>
    </div>
    )
 };
