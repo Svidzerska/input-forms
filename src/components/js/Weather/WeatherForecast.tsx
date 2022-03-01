@@ -16,8 +16,6 @@ function WeatherForecast(props : any) {
    const weather = useSelector((state : RootStateOrAny) => state.weatherForecast.weatherObject);
    const coord = useSelector((state: RootStateOrAny) => state.weatherForecast.coord);
 
-   const forecast = useSelector((state: RootStateOrAny) => state.weatherForecast.forecastObject);
-
    useEffect(() => {
       console.log(city); //city from input element
       dispatch(getWeatherCoord(city));
@@ -26,10 +24,6 @@ function WeatherForecast(props : any) {
    useEffect(() => {
       dispatch(setCoordinates(weather?.coord));
    }, [weather]);
-
-   useEffect(() => {
-      console.log(forecast);
-   }, [forecast]);
 
 
    const handleChange = (e : any) => {

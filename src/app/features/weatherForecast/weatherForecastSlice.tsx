@@ -45,7 +45,6 @@ any
    'weatherForecast/getWeatherForecast',
    async (coordinates, { rejectWithValue }) => {
       return ApiWeather.getForecast(coordinates)?.then(data => {
-         console.log(data);
          return data ;  //payload - data
       }) as Promise<Data>;
    },
@@ -84,13 +83,13 @@ export const weatherForecastSlice = createSlice({
 
 
       builder.addCase(getWeatherForecast.fulfilled, (state, action) => {
-         state.weatherObject = action.payload;
+         state.forecastObject = action.payload;
       });
       builder.addCase(getWeatherForecast.pending, (state) => {
-         state.weatherObject = {warning : 'please wait a moment'};
+         state.forecastObject = {warning : 'please wait a moment'};
          console.log('pending')});
       builder.addCase(getWeatherForecast.rejected, (state) => {
-         state.weatherObject = {};
+         state.forecastObject = {};
          console.log('rejected')
       });
    },
