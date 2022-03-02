@@ -18,6 +18,7 @@ function WeatherForecastInfo(props: any) {
 
    useEffect(() => {
       console.log(forecast);
+      console.log(forecast?.warning);
    }, [forecast]);
 
 
@@ -42,6 +43,7 @@ function WeatherForecastInfo(props: any) {
                <p className="weatherForecast__information_cityName">{weather?.cod === 200 ? weather?.name : weather?.message}</p>
             </p>
          </div>
+         <div>{forecast?.warning ? forecast?.warning : ""}</div>
          <div className="weatherForecast__forecast">
             <div>{forecast?.list ? forecast?.list[0]?.dt : ""}</div>
             <div></div>

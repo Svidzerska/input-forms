@@ -23,11 +23,13 @@ function WeatherForecast(props : any) {
 
    useEffect(() => {
       dispatch(setCoordinates(weather?.coord));
+      console.log(weather?.warning);
    }, [weather]);
 
 
    const handleChange = (e : any) => {
       dispatch(setCityForecast(e.target.value));
+      dispatch(getWeatherForecast({}));
    }
 
    const handleButton = () => {
@@ -40,6 +42,7 @@ function WeatherForecast(props : any) {
       <Button className={weather?.cod === 200 ?
       "weatherForecast_go" : 
       "weatherForecast_no_data"} text="Go" onClick={handleButton}/>
+      <div>{weather?.warning ? weather?.warning : ""}</div>
       <div>{weather?.cod === 200 ? "" : weather?.message}</div>
       
       <WeatherForecastInfo/>
