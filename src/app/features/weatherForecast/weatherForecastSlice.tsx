@@ -8,6 +8,7 @@ interface InitialState {
    weatherObject: {},
    iconImage: string,
    forecastObject: {},
+   date: string
 }
 
 interface Data {
@@ -21,6 +22,7 @@ const initialState = {
    weatherObject: {},
    iconImage: "",
    forecastObject: {},
+   date: ""
 } as InitialState
 
 
@@ -67,6 +69,9 @@ export const weatherForecastSlice = createSlice({
       setCoordinates: (state, action : PayloadAction<string>) => {
          state.coord = action.payload
       },
+      setDate: (state, action : PayloadAction<string>) => {
+         state.date = action.payload
+      }
    },
 
    extraReducers: (builder) => {
@@ -97,6 +102,6 @@ export const weatherForecastSlice = createSlice({
 },
 )
 
-export const { setIcon, setCityForecast, setCoordinates } = weatherForecastSlice.actions;
+export const { setIcon, setCityForecast, setCoordinates, setDate } = weatherForecastSlice.actions;
 export default weatherForecastSlice.reducer;
 

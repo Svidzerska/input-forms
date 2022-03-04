@@ -1,3 +1,19 @@
 .weatherForecast__information_hidden {
    display: none;
 }
+
+.weatherForecast__forecast {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.weatherForecast__forecast > button {
+   width: 100%;
+}
+
+.weatherForecast__forecast__data {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}

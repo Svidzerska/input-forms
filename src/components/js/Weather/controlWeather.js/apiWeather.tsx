@@ -1,3 +1,5 @@
+import { timeStamp } from "console";
+
 let countryObj = {
    country: `ukraine`
 };
@@ -18,6 +20,10 @@ const ApiWeather = {
    getCities: (() => {
       return getUkraineCities('POST', country);
    })
+
+   // getTime : (() => {
+   //    return getTimeFormUnix(timeStamp);
+   // })
 }
 
 
