@@ -34,7 +34,7 @@ function WeatherForecastInfo(props: any) {
 
       const listTimeFull = unixTimeList?.map(function(unixTime:any) {
          let a = new Date(unixTime.dt*1000);
-         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+         const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
          let year = a.getFullYear();
          let month = months[a.getMonth()];
          let date = a.getDate();
@@ -45,9 +45,16 @@ function WeatherForecastInfo(props: any) {
          let min = a.getMinutes() <= 9 ? '0' + a.getMinutes() : a.getMinutes();
          let sec = a.getSeconds();
          let time = hour + ':' + min;
-         console.log(typeof time);
 
-         return {date_value: fullDate, time_value: time};
+         return {date_value: fullDate,
+             time_value: time,
+              temperature: unixTime?.main?.temp,
+              feels_like: unixTime?.main?.feels_like,
+              pressure: unixTime?.main?.pressure,
+              humidity: unixTime?.main?.humidity,
+              clouds: unixTime?.weather[0].description,
+              icon: unixTime?.weather[0].icon
+            };
       });
 
    console.log(listTimeFull);
@@ -56,12 +63,38 @@ function WeatherForecastInfo(props: any) {
       return value?.date_value;
    });
 
-   console.log(dateFromStore);
+
+   useEffect(() => {
+      if (listTimeFullDateValue) {
+         dispatch(setDate(listTimeFullDateValue[0]));
+      }
+   }, [forecast]);  
+
+
    const listTimeFullTimeValue = listTimeFull?.map((value:any) => {
       if (value?.date_value === dateFromStore) {
-         return (<div key={value?.time_value}>
+         const iconImage = `http://openweathermap.org/img/wn/${value?.icon}@2x.png`;
+         return (<div key={value?.time_value} className={"weatherForecast__forecast__element_weather"}>
             <p>
                {value?.time_value}
+            </p>
+            <p className="weatherForecast__forecast__icon_picture">
+               <img src={iconImage} alt={value?.icon} />
+            </p>
+            <p>
+               {value?.clouds}
+            </p>
+            <p>
+               {Math.round(value?.temperature)}
+            </p>
+            <p>
+               {Math.round(value?.feels_like)}
+            </p>
+            <p>
+               {Math.round(value?.pressure*0.75006)}
+            </p>
+            <p>
+               {value?.humidity}
             </p>
          </div>
          )
@@ -72,23 +105,23 @@ function WeatherForecastInfo(props: any) {
    console.log(listTimeUnique);
 
    const handleButtonDate = (e:any) => {
-      console.log(e.target.className);
-      dispatch(setDate(e.target.className));
+      console.log(e.target.name);
+      dispatch(setDate(e.target.name));
    }
 
    const listDate = listTimeUnique.map((date:any) => {
       return (
-         <Button key={date} onClick={handleButtonDate} text={date} className={date}></Button>
+         <Button key={date} onClick={handleButtonDate} text={date} className={date === dateFromStore ? "button_day__active" : "button_day_all"} name={date}></Button>
       )
    });
-
-
 
    useEffect(() => {
       console.log(city);
       console.log(weather);
    }, [city]);
 
+
+   
    // useEffect(() => {
    //    console.log(weather);
    //    if (weather?.weather) {
@@ -109,8 +142,14 @@ function WeatherForecastInfo(props: any) {
          <div className="weatherForecast__forecast">
             {listDate}
          </div>
-         <div className="weatherForecast__forecast__data">
-            <div><p>Time</p></div>
+         <div className={dateFromStore !== "" ? "weatherForecast__forecast__data" : "weatherForecast__forecast__no_data"}>
+            <div><p>Time</p>
+            <p>Clouds</p>
+            <p>Temperature, C</p>
+            <p>Feels like, C</p>
+            <p>Pressure</p>
+            <p>Humidity</p>
+            </div>
             {listTimeFullTimeValue}
          </div>
       </div>

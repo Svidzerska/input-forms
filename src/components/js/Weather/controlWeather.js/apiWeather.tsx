@@ -26,6 +26,7 @@ const ApiWeather = {
    // })
 }
 
+// https://api.openweathermap.org/data/2.5/forecast?lat=50&lon=36.25&lang=en&units=metric&mode=xml&appid=18403b04ed7c3c2c59d89a2a42ba33c0
 
 async function getWeatherForecast(method : string, lat : number, lon : number) {
    try {

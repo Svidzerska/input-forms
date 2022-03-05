@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import './weatherForecast.scss';
 import InputHooks from "../ElementForm/Input_component_hooks";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
-import { getWeatherForecast, setCityForecast } from "../../../app/features/weatherForecast/weatherForecastSlice";
+import { getWeatherForecast, setCityForecast, setDate } from "../../../app/features/weatherForecast/weatherForecastSlice";
 import { getWeatherCoord } from "../../../app/features/weatherForecast/weatherForecastSlice";
 import { setCoordinates } from "../../../app/features/weatherForecast/weatherForecastSlice";
 import Button from "../ElementForm/Button";
@@ -30,6 +30,7 @@ function WeatherForecast(props : any) {
    const handleChange = (e : any) => {
       dispatch(setCityForecast(e.target.value));
       dispatch(getWeatherForecast({}));
+      dispatch(setDate(""));
    }
 
    const handleButton = () => {
