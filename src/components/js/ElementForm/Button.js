@@ -6,6 +6,8 @@ function Button(props) {
          className={props.className}
          name={props.name}>
          {props.text}
+         <br/>
+         {props.info}
       </button>
    )
 }

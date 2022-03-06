@@ -1,13 +1,16 @@
 .weatherForecast {
-   max-width: 500px;
+   max-width: 1000px;
    background-color: aliceblue;
    border: 3px solid rgb(171, 130, 238);
    margin-left: auto;
    margin-right: auto;
    margin-top: 30px;
    margin-bottom: 30px;
+   font-family: 'Roboto';
+   
    .weatherForecast_go {
       height: 30px;
+      font-family: 'Roboto';
    }
 
    .weatherForecast_no_data {

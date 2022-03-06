@@ -17,7 +17,6 @@ function WeatherForecastInfo(props: any) {
    const weather = useSelector((state : RootStateOrAny) => state.weatherForecast.weatherObject);
    const forecast = useSelector((state: RootStateOrAny) => state.weatherForecast.forecastObject);
    const dateFromStore = useSelector((state: RootStateOrAny) => state.weatherForecast.date);
-   const icon = useSelector((state: RootStateOrAny) => state.weather.iconImage);
 
 
 
@@ -38,23 +37,33 @@ function WeatherForecastInfo(props: any) {
          let year = a.getFullYear();
          let month = months[a.getMonth()];
          let date = a.getDate();
+         // let day = a.getDay();
+         
+         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+         let day = days[a.getDay() - 1];
+         console.log(day);
 
-         let fullDate = date + ' ' + month + ' ' + year;
+         let fullDate = date + ' ' + month + ' ' + year + ' ' + day;
 
          let hour = a.getHours() <= 9 ? '0' + a.getHours() : a.getHours();
          let min = a.getMinutes() <= 9 ? '0' + a.getMinutes() : a.getMinutes();
          let sec = a.getSeconds();
          let time = hour + ':' + min;
 
-         return {date_value: fullDate,
-             time_value: time,
-              temperature: unixTime?.main?.temp,
-              feels_like: unixTime?.main?.feels_like,
-              pressure: unixTime?.main?.pressure,
-              humidity: unixTime?.main?.humidity,
-              clouds: unixTime?.weather[0].description,
-              icon: unixTime?.weather[0].icon
-            };
+         return {
+            date_value: fullDate,
+            time_value: time,
+            day: day,
+            temperature: unixTime?.main?.temp,
+            feels_like: unixTime?.main?.feels_like,
+            pressure: unixTime?.main?.pressure,
+            humidity: unixTime?.main?.humidity,
+            clouds: unixTime?.weather[0].description,
+            icon: unixTime?.weather[0].icon,
+            wind_speed: unixTime?.wind?.speed,
+            gust: unixTime?.wind?.gust,
+            wind_direction: unixTime?.wind?.deg,
+         };
       });
 
    console.log(listTimeFull);
@@ -62,7 +71,7 @@ function WeatherForecastInfo(props: any) {
    const listTimeFullDateValue = listTimeFull?.map((value:any) => {
       return value?.date_value;
    });
-
+   const listTimeUnique = Array.from(new Set(listTimeFullDateValue));
 
    useEffect(() => {
       if (listTimeFullDateValue) {
@@ -75,14 +84,11 @@ function WeatherForecastInfo(props: any) {
       if (value?.date_value === dateFromStore) {
          const iconImage = `http://openweathermap.org/img/wn/${value?.icon}@2x.png`;
          return (<div key={value?.time_value} className={"weatherForecast__forecast__element_weather"}>
-            <p>
+            <p className="weatherForecast__forecast__time_value">
                {value?.time_value}
             </p>
             <p className="weatherForecast__forecast__icon_picture">
                <img src={iconImage} alt={value?.icon} />
-            </p>
-            <p>
-               {value?.clouds}
             </p>
             <p>
                {Math.round(value?.temperature)}
@@ -96,13 +102,20 @@ function WeatherForecastInfo(props: any) {
             <p>
                {value?.humidity}
             </p>
+            <p>
+               {Math.round(value?.wind_speed)}
+            </p>
+            <p>
+               {Math.round(value?.gust)}
+            </p>
+            <p>
+               {value?.wind_direction}
+            </p>
          </div>
          )
       }
    });
 
-   const listTimeUnique = Array.from(new Set(listTimeFullDateValue));
-   console.log(listTimeUnique);
 
    const handleButtonDate = (e:any) => {
       console.log(e.target.name);
@@ -110,8 +123,11 @@ function WeatherForecastInfo(props: any) {
    }
 
    const listDate = listTimeUnique.map((date:any) => {
+      let a = date.split(' ');
+      let day = a?.pop();
+      let today = a.join(' ');
       return (
-         <Button key={date} onClick={handleButtonDate} text={date} className={date === dateFromStore ? "button_day__active" : "button_day_all"} name={date}></Button>
+         <Button key={date} onClick={handleButtonDate} text={today} info={day} className={date === dateFromStore ? "button_day__active" : "button_day_all"} name={date} />
       )
    });
 
@@ -119,17 +135,6 @@ function WeatherForecastInfo(props: any) {
       console.log(city);
       console.log(weather);
    }, [city]);
-
-
-   
-   // useEffect(() => {
-   //    console.log(weather);
-   //    if (weather?.weather) {
-   //       let code = weather.weather[0].icon;
-   //       const iconImage = `http://openweathermap.org/img/wn/${code}@2x.png`;
-   //       dispatch(setIcon(iconImage));
-   //    }
-   // }, [weather]);
 
    return (<div>
       <div className={weather?.cod === 200 ? "weatherForecast__information" : "weatherForecast__information_hidden"}>
@@ -143,14 +148,18 @@ function WeatherForecastInfo(props: any) {
             {listDate}
          </div>
          <div className={dateFromStore !== "" ? "weatherForecast__forecast__data" : "weatherForecast__forecast__no_data"}>
-            <div><p>Time</p>
-            <p>Clouds</p>
-            <p>Temperature, C</p>
-            <p>Feels like, C</p>
-            <p>Pressure</p>
-            <p>Humidity</p>
+            <div className="weatherForecast__forecast__name">
+               <p>Time</p>
+               <p className="weatherForecast__forecast__icon_name">Weather</p>
+               <p>Temperature, C</p>
+               <p>Feels like, C</p>
+               <p>Pressure, mm Hg</p>
+               <p>Humidity, %</p>
+               <p>Wind, m/s</p>
+               <p>Gust, m/s</p>
+               <p>Direction</p>
             </div>
-            {listTimeFullTimeValue}
+            <div className="weatherForecast__forecast__data__info">{listTimeFullTimeValue}</div>
          </div>
       </div>
    </div>
