@@ -43,8 +43,8 @@ function WeatherForecast(props : any) {
       <Button className={weather?.cod === 200 ?
       "weatherForecast_go" : 
       "weatherForecast_no_data"} text="Go" onClick={handleButton}/>
-      <div>{weather?.warning ? weather?.warning : ""}</div>
-      <div>{weather?.cod === 200 ? "" : weather?.message}</div>
+      <div className="weatherForecast__warnings">{weather?.warning ? weather?.warning : ""}</div>
+      <div className="weatherForecast__warnings">{weather?.cod === 200 ? "" : weather?.message}</div>
       
       <WeatherForecastInfo/>
    </div>

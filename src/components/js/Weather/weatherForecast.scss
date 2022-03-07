@@ -8,6 +8,7 @@
    margin-bottom: 30px;
    font-family: 'Roboto';
 
+
    .weatherForecast_input {
       height: 40px;
       font-size: 20px;
@@ -24,5 +25,12 @@
 
    .weatherForecast_no_data {
       display: none;
+   }
+
+   .weatherForecast__warnings {
+      font-family: 'Roboto';
+      font-size: 20px;
+      color:rgb(255, 68, 162);
+      font-style: italic;
    }
 }
