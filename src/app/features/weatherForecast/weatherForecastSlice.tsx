@@ -47,6 +47,7 @@ any
    'weatherForecast/getWeatherForecast',
    async (coordinates, { rejectWithValue }) => {
       return ApiWeather.getForecast(coordinates)?.then(data => {
+         console.log(data);
          return data ;  //payload - data
       }) as Promise<Data>;
    },

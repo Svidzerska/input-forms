@@ -1,5 +1,5 @@
 .weatherForecast {
-   max-width: 1000px;
+   max-width: fit-content;
    background-color: aliceblue;
    border: 3px solid rgb(171, 130, 238);
    margin-left: auto;
@@ -7,10 +7,19 @@
    margin-top: 30px;
    margin-bottom: 30px;
    font-family: 'Roboto';
+
+   .weatherForecast_input {
+      height: 40px;
+      font-size: 20px;
+      box-sizing: border-box;
+   }
    
    .weatherForecast_go {
-      height: 30px;
+      height: 40px;
       font-family: 'Roboto';
+      font-size: 20px;
+      box-sizing: border-box;
+      margin: 10px;
    }
 
    .weatherForecast_no_data {

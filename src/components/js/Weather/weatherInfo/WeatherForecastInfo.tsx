@@ -4,10 +4,9 @@ import Button from "../../ElementForm/Button";
 
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { useEffect } from 'react';
-import { setIcon } from "../../../../app/features/weather/weatherSlice";
 import { useDispatch } from "react-redux";
 import { setDate } from "../../../../app/features/weatherForecast/weatherForecastSlice";
-
+let d2d = require('degrees-to-direction');
 
 function WeatherForecastInfo(props: any) {
    const dispatch = useDispatch();
@@ -62,7 +61,7 @@ function WeatherForecastInfo(props: any) {
             icon: unixTime?.weather[0].icon,
             wind_speed: unixTime?.wind?.speed,
             gust: unixTime?.wind?.gust,
-            wind_direction: unixTime?.wind?.deg,
+            wind_direction: d2d(unixTime?.wind?.deg),
          };
       });
 
@@ -90,7 +89,7 @@ function WeatherForecastInfo(props: any) {
             <p className="weatherForecast__forecast__icon_picture">
                <img src={iconImage} alt={value?.icon} />
             </p>
-            <p>
+            <p className={Math.round(value?.temperature) < 0 ? "weatherForecast__forecast__temp_main_minus" : "weatherForecast__forecast__temp_main_plus"}>
                {Math.round(value?.temperature)}
             </p>
             <p>
@@ -151,7 +150,7 @@ function WeatherForecastInfo(props: any) {
             <div className="weatherForecast__forecast__name">
                <p>Time</p>
                <p className="weatherForecast__forecast__icon_name">Weather</p>
-               <p>Temperature, C</p>
+               <p className="weatherForecast__forecast__temperature_name">Temperature, C</p>
                <p>Feels like, C</p>
                <p>Pressure, mm Hg</p>
                <p>Humidity, %</p>

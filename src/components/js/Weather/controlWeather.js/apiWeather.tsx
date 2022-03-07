@@ -1,4 +1,3 @@
-import { timeStamp } from "console";
 
 let countryObj = {
    country: `ukraine`
