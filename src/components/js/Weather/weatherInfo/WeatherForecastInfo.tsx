@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { setDate } from "../../../../app/features/weatherForecast/weatherForecastSlice";
 import { getForecastFullInfo } from "../controlWeather/weatherForecastInfoData";
+const lookup = require('country-code-lookup');
 
 function WeatherForecastInfo(props: any) {
    const dispatch = useDispatch();
@@ -15,6 +16,13 @@ function WeatherForecastInfo(props: any) {
    const forecast = useSelector((state: RootStateOrAny) => state.weatherForecast.forecastObject);
    const dateFromStore = useSelector((state: RootStateOrAny) => state.weatherForecast.date);
 
+
+   const renderCountryByCity = () => {
+         if (weather?.sys?.country) {
+            const countryObj = lookup.byIso(weather?.sys?.country);
+            return ' ' + countryObj?.country;
+         }
+   }
 
    const forecastFullInfo = getForecastFullInfo(forecast?.list);
    
@@ -88,7 +96,8 @@ function WeatherForecastInfo(props: any) {
          <div className="weatherForecast__information_city">
             <p>Chosen city:
                <p className="weatherForecast__information_cityName">
-                  {weather?.cod === 200 ? weather?.name : weather?.message}
+                  {weather?.cod === 200 ? weather?.name : weather?.message},
+                  {renderCountryByCity()}
                </p>
             </p>
          </div>
