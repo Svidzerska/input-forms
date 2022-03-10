@@ -35,9 +35,9 @@ function WeatherForecastInfo(props: any) {
    }
 
    const listDate = fullDateUnique.map((date: any) => {
-      let a = date.split(' ');
-      let day = a?.pop();
-      let today = a.join(' ');
+      const a = date.split(' ');
+      const day = a?.pop();
+      const today = a.join(' ');
       return (
          <Button key={date} onClick={handleButtonDate} text={today} info={day} className={date === dateFromStore ? "button_day__active" : "button_day_all"} name={date} />
       )

@@ -19,7 +19,7 @@ function WeatherInfoResult(props : any) {
    useEffect(() => {
       console.log(weather);
       if (weather?.weather) {
-         let code = weather.weather[0].icon;
+         const code = weather.weather[0].icon;
          const iconImage = `http://openweathermap.org/img/wn/${code}@2x.png`;
          dispatch(setIcon(iconImage));
       }
