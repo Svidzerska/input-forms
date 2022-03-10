@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
-import ApiWeather from "../../../components/js/Weather/controlWeather.js/apiWeather";
+import ApiWeather from "../../../components/js/Weather/controlWeather/apiWeather";
 
 
 interface InitialState {

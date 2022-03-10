@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { isRejectedWithValue } from "@reduxjs/toolkit";
-import ApiWeather from "../../../components/js/Weather/controlWeather.js/apiWeather";
+import ApiWeather from "../../../components/js/Weather/controlWeather/apiWeather";
 
 const initialState = {
    cities: []
