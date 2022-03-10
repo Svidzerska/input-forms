@@ -25,10 +25,8 @@ function WeatherInfoResult(props : any) {
       }
    }, [weather]);
 
-   return (<div>
-      <div className={weather?.warning ? "weather_pending" : "weather_fulfilled"}>{weather?.warning ? weather?.warning : ""}</div>
-      <div className={city !== "" ? "weatherPage__information" : "weatherPage__information_hidden"}>
-         <div className="weatherPage__information_city"><p>Chosen city: <p className="weatherPage__information_cityName">{city}</p></p></div>
+   const renderWeatherPicture = () => {
+      return (
          <div className={weather?.cod === 200 ? "weatherPage__information_clouds" : "cod_not200_hidden"}>
             <img src={icon} alt={weather?.cod === 200 ?
                weather?.weather[0]?.icon :
@@ -37,10 +35,26 @@ function WeatherInfoResult(props : any) {
                weather?.weather[0]?.description :
                weather?.message}</p>
          </div>
+      )
+   } 
+
+   const renderWeatherTemperature = () => {
+      return (
          <div className={weather?.cod === 200 ? "weatherPage__information_temperature" : "cod_not200_hidden"}>
             <p>temperature:<br /> {Math.round(weather?.main?.temp)} &#176;C</p>
             <p>feels like:<br />{Math.round(weather?.main?.feels_like)} &#176;C</p>
          </div>
+      )
+   }
+
+   return (<div>
+      <div className={weather?.warning ? "weather_pending" : "weather_fulfilled"}>{weather?.warning ? weather?.warning : ""}</div>
+      <div className={city !== "" ? "weatherPage__information" : "weatherPage__information_hidden"}>
+         <div className="weatherPage__information_city">
+            <p>Chosen city: <p className="weatherPage__information_cityName">{city}</p></p>
+         </div>
+         {renderWeatherPicture()}
+         {renderWeatherTemperature()}
          <div className={weather?.cod === 200 ? "cod200_hidden" : "codError"}>
             {weather?.cod === 200 ? "" : weather?.message}
          </div>
