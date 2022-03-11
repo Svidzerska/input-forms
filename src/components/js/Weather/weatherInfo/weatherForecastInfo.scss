@@ -13,6 +13,13 @@
    display: none;
 }
 
+.weatherForecast__information_warning {
+   font-family: 'Roboto';
+   font-size: 20px;
+   color:rgb(255, 68, 162);
+   font-style: italic;
+}
+
 .weatherForecast__forecast {
    display: flex;
    flex-direction: row;
