@@ -32,13 +32,7 @@ function App() {
    const [isAuth, setIsAuth] = useState(false);
    const [currentUser, setCurrentUser] = useState({});
 
-   
-   // useEffect(() => {
-   //    console.log(isAuth);
-   // }, [isAuth]);
-
-   useEffect(()=> {
-      console.log(currentUser, !!currentUser);
+   useEffect(() => {
       setIsAuth(!!currentUser && !!currentUser.name)
    });
 
