@@ -131,10 +131,10 @@ div.blue::after, div.yellow::after, div.orange::after, div.green::after {
 }
 
 
-@media screen and (max-width:750px) {
+@media screen and (max-width:1020px) {
    .header {
       justify-content: space-evenly;
-  }
+   }
    .navigation_tools {
       flex-direction: column;
    }

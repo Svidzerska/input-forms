@@ -101,7 +101,7 @@ function WeatherForecastInfo(props: any) {
                </p>
             </p>
          </div>
-         <div>{forecast?.warning ? forecast?.warning : ""}</div>
+         <div className="weatherForecast__information_warning">{forecast?.warning ? forecast?.warning : ""}</div>
          <div className="weatherForecast__forecast">
             {listDate}
          </div>
