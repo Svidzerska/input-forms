@@ -7,6 +7,7 @@ function Select(props) {
       placeholder,
       className,
       options,
+      size,
       onChange
    } = props;
 
@@ -23,6 +24,7 @@ function Select(props) {
             placeholder={placeholder}
             className={className + "__select_element"}
             options={options}
+            size={size}
             onChange={onChange}>
                {listOptions}
          </select>

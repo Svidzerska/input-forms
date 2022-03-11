@@ -1,0 +1,17 @@
+.dashboard__information {
+   padding: 10px 0 50px 0;
+}
+
+.information_card {
+   max-width: 800px;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: start;
+   border: 2px solid rgb(171, 130, 238);
+   border-radius: 20px;
+   box-shadow: 4px 4px 4px gainsboro;
+   padding: 40px;
+   background-color: white;
+   margin-bottom: 20px;
+}
+

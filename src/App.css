@@ -45,6 +45,10 @@
    background-color: white;
 }
 
+.navigation_tools > p.navigation_tools__weather {
+   background-color: rgb(211, 235, 255);
+}
+
 
 a {
    color: rgb(27, 0, 53);
@@ -65,8 +69,13 @@ a:hover {
 
 div.blue, div.yellow, div.orange, div.green {
    background-size: cover;
-   padding-bottom: 100px;
    box-shadow: 1px 10px 20px grey;
+   min-height: 100vh;
+}
+
+div.blue::after, div.yellow::after, div.orange::after, div.green::after {
+   content: 'a';
+   visibility: hidden;
 }
 
 .blue {
@@ -132,5 +141,6 @@ div.blue, div.yellow, div.orange, div.green {
 
    .navigation_tools > p, .home {
       margin: 7px;
+      text-align: center;
    }
 }

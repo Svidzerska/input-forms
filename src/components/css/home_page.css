@@ -1,5 +1,9 @@
-.information_card {
-   margin: 20px;
+.homePage__information {
+   padding: 30px 10px 50px 10px;
+}
+
+
+.homePage__information_card {
    text-align: start;
    border: 2px solid rgb(171, 130, 238);
    border-radius: 20px;
@@ -8,7 +12,7 @@
    background-color: white;
 }
 
-.information_card > p {
+.homePage__information_card > p {
    font-family: 'Roboto';
    font-weight: 400;
    line-height: 24px;
